@@ -1,0 +1,15 @@
+<!-- templates/renter/view_lease.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Lease Details</h2>
+  <p><strong>Apartment Address:</strong> {{ lease.apartment.address }}</p>
+  <p><strong>Start Date:</strong> {{ lease.start_date }}</p>
+  <p><strong>End Date:</strong> {{ lease.end_date }}</p>
+  <p><strong>Rent Amount:</strong> {{ lease.rent_amount }}</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" name="delete">Delete Lease</button>
+  </form>
+{% endblock %}

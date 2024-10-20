@@ -1,0 +1,11 @@
+<!-- templates/renter/manage_lease.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Manage Lease</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update Lease</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+<!-- templates/renter/add_apartment.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Add Apartment</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Apartment</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+<!-- templates/renter/post_announcement.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Post Announcement</h2>
+  <form method="post">
+    {% csrf_token %}
+    <textarea name="announcement" rows="5" cols="50" placeholder="Type your announcement here"></textarea>
+    <button type="submit">Post Announcement</button>
+  </form>
+{% endblock %}

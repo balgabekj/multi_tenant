@@ -1,0 +1,11 @@
+<!-- templates/renter/create_renter.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Create Renter Profile</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Renter</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,35 @@
+<!-- templates/renter/lease_list.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Your Leases</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Apartment Address</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Rent Amount</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for lease in leases %}
+        <tr>
+          <td>{{ lease.apartment.address }}</td>
+          <td>{{ lease.start_date }}</td>
+          <td>{{ lease.end_date }}</td>
+          <td>{{ lease.rent_amount }}</td>
+          <td>
+            <a href="{% url 'view_lease' lease.id %}">View</a> | 
+            <a href="{% url 'manage_lease' lease.id %}">Manage</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No leases found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
