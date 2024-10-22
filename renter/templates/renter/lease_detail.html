@@ -1,9 +1,0 @@
-<h2>Lease Details for {{ lease.apartment.name }} - {{ lease.tenant_name }}</h2>
-<p>Start Date: {{ lease.start_date }}</p>
-<p>End Date: {{ lease.end_date }}</p>
-<p>Rent Amount: {{ lease.rent_amount }}</p>
-
-<form method="post">
-  {% csrf_token %}
-  <button type="submit" name="delete">Delete Lease</button>
-</form>
