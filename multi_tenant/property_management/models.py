@@ -1,5 +1,5 @@
 from django.db import models
-from multi_tenant.users.models import CustomUser, Tenant, Renter
+from users.models import CustomUser, Tenant, Renter
 
 class Property(models.Model):
     title = models.CharField(max_length=255)  # Property name or title

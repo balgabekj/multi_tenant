@@ -1,5 +1,5 @@
 from django.db import models
-from multi_tenant.users.models import CustomUser, Tenant, Renter
+from users.models import CustomUser
 
 class Message(models.Model):
     sender = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='sent_messages')  # User sending the message
@@ -30,7 +30,7 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return f"Blog Post: {self.title} by {self.author.username}"
-        
+
 class Comment(models.Model):
     post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments')  # The blog post being commented on
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='comments')  # User who made the comment

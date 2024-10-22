@@ -1,17 +1,20 @@
-from urllib import request
 
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
+
+from property_management.models import Lease
 from .forms import UserRegisterForm
 from users.decorators import tenant_required, renter_required
 from django.views.generic import UpdateView
 from django.urls import reverse_lazy
-from .models import CustomUser
+from .models import CustomUser, Tenant, Renter
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import timedelta
+from django.views.generic import ListView
+
 
 # Create your views here.
 
@@ -71,3 +74,62 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
         # Return the currently logged-in user
         return self.request.user
 
+@tenant_required
+@login_required
+def view_renting_property(request):
+    tenant_profile = request.user.tenant_profile  # Access tenant's profile
+    rented_property = tenant_profile.rented_property if tenant_profile else None
+    return render(request, 'users/view_rented_property.html', {'property': rented_property})
+
+@tenant_required
+@login_required
+def terminate_rental_agreement(request):
+    tenant_profile = request.user.tenant_profile
+    if tenant_profile:
+        tenant_profile.rented_property = None
+        tenant_profile.save()
+        return redirect('profile')  # Redirect to profile after termination
+
+@tenant_required
+@login_required
+def prolongate_rental_agreement(request):
+    tenant_profile = request.user.tenant_profile
+    if tenant_profile and tenant_profile.lease_end_date:
+        tenant_profile.lease_end_date += timedelta(days=30)  # Extend by 30 days
+        tenant_profile.save()
+    return redirect('profile')
+
+class UpdatePaymentMethodView(LoginRequiredMixin, UpdateView):
+    model = Tenant
+    fields = ['payment_method']
+    template_name = 'users/update_payment.html'
+    success_url = reverse_lazy('profile')
+
+    def get_object(self):
+        return self.request.user.tenant_profile
+
+
+
+class RenterLeasesView(LoginRequiredMixin, ListView):
+    model = Lease
+    template_name = 'users/renter_leases.html'
+    context_object_name = 'leases'
+
+    def get_queryset(self):
+        return self.request.user.renter_profile.lease_history.all()
+
+@login_required
+def renew_lease(request, lease_id):
+    lease = Lease.objects.get(id=lease_id)
+    lease.end_date += timedelta(days=30)  # Extend lease by 30 days
+    lease.save()
+    return redirect('renter-leases')
+
+@login_required
+def terminate_lease(request, lease_id):
+    lease = Lease.objects.get(id=lease_id)
+    lease.active = False
+    lease.save()
+    return redirect('renter-leases')
+
+#admin views and models need to be added 
