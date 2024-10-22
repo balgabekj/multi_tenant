@@ -25,11 +25,12 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}')
-            return redirect('login')
+            return redirect('tenant_dashboard')  # Use the correct URL name here
+        else:
+            print(form.errors)  # Debugging: print form errors
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
-
 
 def user_login(request: HttpRequest):
     if request.method == 'POST':

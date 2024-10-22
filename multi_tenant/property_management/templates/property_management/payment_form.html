@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Payment</title>
+</head>
+<body>
+    <h1>Make Payment for Lease</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Pay</button>
+    </form>
+    <a href="{% url 'lease_detail' lease.id %}">Back to Lease Details</a>
+</body>
+</html>

@@ -1,4 +1,4 @@
-from django.db import models
+  from django.db import models
 from users.models import CustomUser
 
 class Message(models.Model):

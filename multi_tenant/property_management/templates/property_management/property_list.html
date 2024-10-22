@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property List</title>
+</head>
+<body>
+    <h1>Available Properties</h1>
+    <a href="{% url 'property_create' %}">Add Property</a>
+    <ul>
+        {% for property in properties %}
+            <li>
+                <a href="{% url 'property_detail' property.id %}">{{ property.title }}</a> - {{ property.city }}
+            </li>
+        {% empty %}
+            <li>No properties available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
