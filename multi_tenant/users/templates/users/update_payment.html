@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Payment Method{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Update Payment Method</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Update Payment</button>
+    </form>
+</div>
+{% endblock %}

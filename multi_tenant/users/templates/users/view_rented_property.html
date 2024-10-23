@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Rented Property</h2>
+    {% if property %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ property.name }}</h5>
+                <p class="card-text">
+                    <strong>Address:</strong> {{ property.address }}<br>
+                    <strong>Rent:</strong> ${{ property.rent }}<br>
+                    <strong>Lease Start Date:</strong> {{ property.lease_start_date }}<br>
+                    <strong>Lease End Date:</strong> {{ property.lease_end_date }}<br>
+                </p>
+            </div>
+        </div>
+    {% else %}
+        <p>You are currently not renting any property.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ property.title }} Details</title>
+</head>
+<body>
+    <h1>{{ property.title }}</h1>
+    <p><strong>Address:</strong> {{ property.address }}, {{ property.city }}, {{ property.state }} {{ property.postal_code }}</p>
+    <p><strong>Rent Price:</strong> ${{ property.rent_price }}</p>
+    <p><strong>Description:</strong> {{ property.description }}</p>
+    <p><strong>Available From:</strong> {{ property.available_from }}</p>
+    
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>{{ review.tenant.user.username }} - Rating: {{ review.rating }}/5 - {{ review.comment }}</li>
+        {% empty %}
+            <li>No reviews yet.</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'review_create' property.id %}">Add Review</a>
+    <a href="{% url 'property_update' property.id %}">Edit Property</a>
+    <form action="{% url 'property_delete' property.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete Property</button>
+    </form>
+</body>
+</html>
