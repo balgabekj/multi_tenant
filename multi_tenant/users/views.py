@@ -132,4 +132,3 @@ def terminate_lease(request, lease_id):
     lease.save()
     return redirect('renter-leases')
 
-#admin views and models need to be added 
