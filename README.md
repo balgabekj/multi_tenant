@@ -4,17 +4,17 @@
 
 ## Features 
 ### User Management: 
--Custom user roles 
--Profile management for each role 
--User authentication and authorization
--Tenant-specific features like viewing rented properties, managing lease agreements, and updating payment methods
+- Custom user roles 
+- Profile management for each role 
+- User authentication and authorization
+- Tenant-specific features like viewing rented properties, managing lease agreements, and updating payment methods
 
 ### Property Management
--CRUD operations for properties.
--Lease management between tenants and renters
--Property listings management for renters.
--Property reviews by tenants.
--Payment tracking and history.
+- CRUD operations for properties.
+- Lease management between tenants and renters
+- Property listings management for renters.
+- Property reviews by tenants.
+- Payment tracking and history.
 
 ### Blog Management
 - Users can create blog posts.
