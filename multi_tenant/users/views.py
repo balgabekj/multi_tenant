@@ -67,20 +67,24 @@ def renter_dashboard(request):
 
 class UserProfileView(LoginRequiredMixin, UpdateView):
     model = CustomUser
-    fields = ['first_name', 'last_name', 'email']  # Add other fields as needed
+    fields = ['first_name', 'last_name', 'email']
     template_name = 'users/profile.html'
     success_url = reverse_lazy('profile')
 
     def get_object(self, queryset=None):
-        # Return the currently logged-in user
         return self.request.user
 
 @tenant_required
 @login_required
 def view_renting_property(request):
-    tenant_profile = request.user.tenant_profile  # Access tenant's profile
-    rented_property = tenant_profile.rented_property if tenant_profile else None
+    try:
+        tenant_profile = request.user.tenant_profile
+        rented_property = tenant_profile.rented_property if tenant_profile else None
+    except CustomUser.tenant_profile.RelatedObjectDoesNotExist:
+        rented_property = None 
+
     return render(request, 'users/view_rented_property.html', {'property': rented_property})
+
 
 @tenant_required
 @login_required
@@ -89,14 +93,14 @@ def terminate_rental_agreement(request):
     if tenant_profile:
         tenant_profile.rented_property = None
         tenant_profile.save()
-        return redirect('profile')  # Redirect to profile after termination
+        return redirect('profile') 
 
 @tenant_required
 @login_required
 def prolongate_rental_agreement(request):
     tenant_profile = request.user.tenant_profile
     if tenant_profile and tenant_profile.lease_end_date:
-        tenant_profile.lease_end_date += timedelta(days=30)  # Extend by 30 days
+        tenant_profile.lease_end_date += timedelta(days=30) 
         tenant_profile.save()
     return redirect('profile')
 

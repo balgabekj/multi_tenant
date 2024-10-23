@@ -1,0 +1,23 @@
+{% block title %}My Lease History{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>My Lease History</h2>
+    {% if leases %}
+        <ul class="list-group">
+            {% for lease in leases %}
+                <li class="list-group-item">
+                    <h5 class="mb-1">{{ lease.property.name }}</h5>
+                    <p class="mb-1">
+                        <strong>Lease Start Date:</strong> {{ lease.start_date|date:"F j, Y" }}<br>
+                        <strong>Lease End Date:</strong> {{ lease.end_date|date:"F j, Y" }}<br>
+                        <strong>Rent Amount:</strong> ${{ lease.rent_amount }}
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You don't have any lease history.</p>
+    {% endif %}
+</div>
+{% endblock %}
