@@ -1,2 +1,118 @@
-<h1>Welcome, Renter</h1>
-<p>This is your renter-specific dashboard.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renter Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            color: #555;
+            text-align: center;
+        }
+
+        .dashboard-section {
+            margin-top: 30px;
+        }
+
+        .dashboard-section h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <h1>Welcome, Renter</h1>
+    <p>This is your renter-specific dashboard where you can manage your current leases, watch properties, and more.</p>
+
+    <div class="dashboard-section">
+        <h2>Your Current Lease</h2>
+        {% if current_lease %}
+            <ul>
+                <li><strong>Property:</strong> {{ current_lease.property.address }}</li>
+                <li><strong>Lease Start:</strong> {{ current_lease.start_date }}</li>
+                <li><strong>Lease End:</strong> {{ current_lease.end_date }}</li>
+                <li><strong>Rent:</strong> ${{ current_lease.rent_amount }}</li>
+            </ul>
+            <a href="{% url 'terminate_lease' %}" class="button">Terminate Lease</a>
+        {% else %}
+            <p>You do not currently have an active lease.</p>
+        {% endif %}
+    </div>
+
+    <!-- Watched Properties Section -->
+    <div class="dashboard-section">
+        <h2>Watched Properties</h2>
+        {% if watched_properties %}
+            <ul>
+                {% for property in watched_properties %}
+                    <li>{{ property.address }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You are not watching any properties right now.</p>
+        {% endif %}
+    </div>
+    <div class="dashboard-section">
+        <h2>Account Settings</h2>
+        <a href="{% url 'update_payment_method' %}" class="button">Update Payment Method</a>
+        <a href="{% url 'profile' %}" class="button">View Profile</a>
+    </div>
+</div>
+
+</body>
+</html>

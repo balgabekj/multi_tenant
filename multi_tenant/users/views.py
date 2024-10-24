@@ -10,26 +10,35 @@ from .forms import UserRegisterForm
 from users.decorators import tenant_required, renter_required
 from django.views.generic import UpdateView
 from django.urls import reverse_lazy
-from .models import CustomUser, Tenant, Renter
+from .models import CustomUser, Tenant
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import timedelta
 from django.views.generic import ListView
 
+from django.contrib.auth import login
 
-# Create your views here.
+from django.contrib.auth import login
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .forms import UserRegisterForm
+from .models import CustomUser
 
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             username = form.cleaned_data.get('username')
+            login(request, user)
+            user.role = CustomUser.TENANT
+            user.save()
             messages.success(request, f'Account created for {username}')
-            return redirect('tenant_dashboard')  # Use the correct URL name here
+            return redirect('tenant_dashboard')
         else:
-            print(form.errors)  # Debugging: print form errors
+            return render(request, 'users/register.html', {'form': form})
     else:
         form = UserRegisterForm()
+    
     return render(request, 'users/register.html', {'form': form})
 
 def user_login(request: HttpRequest):
@@ -39,18 +48,18 @@ def user_login(request: HttpRequest):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, f'Welcome back, {user.username}!')
             return redirect_user_by_role(user)
         else:
             messages.error(request, 'Invalid username or password.')
     return render(request, 'users/login.html')
+
 
 def redirect_user_by_role(user):
     if user.role == 'tenant':
         return redirect('tenant_dashboard')
     elif user.role == 'renter':
         return redirect('renter_dashboard')
-    else:
-        return redirect('home')
 
 @login_required
 def user_logout(request):
