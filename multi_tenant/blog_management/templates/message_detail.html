@@ -1,0 +1,10 @@
+{% block content %}
+<h1>Message Detail</h1>
+<p><strong>From:</strong> {{ message.sender.username }}</p>
+<p><strong>To:</strong> {{ message.recipient.username }}</p>
+<p><strong>Sent at:</strong> {{ message.timestamp }}</p>
+<p><strong>Content:</strong></p>
+<p>{{ message.content }}</p>
+
+<a href="{% url 'inbox' %}">Back to Inbox</a>
+{% endblock %}

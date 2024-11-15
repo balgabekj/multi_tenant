@@ -1,0 +1,15 @@
+{% block content %}
+<h1>Blog Posts</h1>
+<a href="{% url 'blogpost_create' %}">Create New Post</a>
+
+<ul>
+    {% for post in blog_posts %}
+        <li>
+            <a href="{% url 'blogpost_detail' post.pk %}">{{ post.title }}</a>
+            - by {{ post.author.username }} on {{ post.created_at|date:"M d, Y" }}
+        </li>
+    {% empty %}
+        <li>No blog posts available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

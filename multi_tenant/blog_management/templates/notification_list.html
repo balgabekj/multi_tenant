@@ -1,0 +1,22 @@
+{% block content %}
+<h2>Your Notifications</h2>
+
+{% if notifications %}
+  <ul>
+    {% for notification in notifications %}
+      <li>
+        <strong>{{ notification.message }}</strong>
+        <small>{{ notification.timestamp }}</small>
+        {% if not notification.is_read %}
+          <a href="{% url 'mark_as_read' notification.id %}">Mark as read</a>
+        {% endif %}
+        <a href="{% url 'delete_notification' notification.id %}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'mark_all_as_read' %}">Mark all as read</a>
+{% else %}
+  <p>No notifications yet.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% block content %}
+<h1>Inbox</h1>
+<ul>
+    {% for message in received_messages %}
+        <li>
+            <a href="{% url 'message_detail' message.pk %}">
+                {% if not message.is_read %}<strong>New:</strong>{% endif %}
+                Message from {{ message.sender.username }} at {{ message.timestamp }}
+            </a>
+        </li>
+    {% empty %}
+        <li>No messages in your inbox.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'send_message' %}">Send a New Message</a>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import PropertyForm, LeaseForm
 from .models import Property, Lease, Review, Listing, Payment
-
+# from 
 def property_list_view(request):
     properties = Property.objects.filter(is_available=True)
     return render(request, 'property_management/property_list.html', {'properties': properties})
