@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Lease</title>
-</head>
-<body>
-    <h1>Add Lease for {{ property.title }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Create Lease</button>
-    </form>
-    <a href="{% url 'property_detail' property.id %}">Back to Property</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{% if lease %}Update Lease for {{ lease.property.name }}{% else %}Create Lease for {{ property.name }}{% endif %}</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">
+      {% if lease %}Update Lease{% else %}Create Lease{% endif %}
+    </button>
+  </form>
+
+  <a href="{% url 'property_detail' property.id %}">Back to Property Details</a>
+{% endblock %}
