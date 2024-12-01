@@ -54,10 +54,19 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'multi_tenant.urls'
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',  # Only JSON responses
+    ],
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [
+            # Add the following line to include DRF templates
+            'path_to_virtualenv/lib/python3.x/site-packages/rest_framework/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h2>Create a Listing for Property: {{ property.title }}</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Render the form fields -->
+
+    <div class="form-group">
+      <label for="price">Price:</label>
+      {{ form.price }} <!-- Add field for price -->
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      {{ form.description }} <!-- Add field for description -->
+    </div>
+
+    <div class="form-group">
+      <label for="availability">Availability:</label>
+      {{ form.availability }} <!-- Add field for availability -->
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      {% if listing %}Update Listing{% else %}Create Listing{% endif %}
+    </button>
+  </form>
+
+  <a href="{% url 'property_detail' property.id %}" class="btn btn-secondary">Back to Property Details</a>
+{% endblock %}

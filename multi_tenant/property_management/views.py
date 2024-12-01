@@ -3,6 +3,14 @@ from django.contrib.auth.decorators import login_required
 from .forms import PropertyForm, LeaseForm, ListingForm, PaymentForm, ReviewForm
 from .models import Property, Lease, Review, Listing, Payment
 from users.decorators import tenant_required, renter_required
+from .serializers import LeaseSerializer, LeaseCreateSerializer
+from rest_framework import generics, status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .models import Lease, Property, Tenant
+from rest_framework.views import APIView
+from django.views.generic import ListView, DetailView
+
 
 # Property Views
 
@@ -57,13 +65,14 @@ def property_delete_view(request, property_id):
 
 @tenant_required
 def lease_create_view(request, property_id):
-    property = get_object_or_404(Property, id=property_id)
+    property_instance = get_object_or_404(Property, id=property_id)
     
     if request.method == 'POST':
         form = LeaseForm(request.POST)
         if form.is_valid():
             lease = form.save(commit=False)
-            lease.property = property  # Attach property to the lease
+            lease.property = property_instance
+            lease.tenant = request.user.tenant_profile  # Automatically assign logged-in user as tenant
             lease.save()
             return redirect('lease_detail', lease_id=lease.id)
     else:
@@ -71,54 +80,67 @@ def lease_create_view(request, property_id):
 
     return render(request, 'property_management/lease_form.html', {
         'form': form,
-        'property': property,
+        'property': property_instance,
         'properties': Property.objects.all(),
     })
 
-# def lease_update_view(request, lease_id):
-#     lease = get_object_or_404(Lease, id=lease_id)
-#     property = lease.property
 
-#     if request.method == 'POST':
-#         form = LeaseForm(request.POST, instance=lease)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('lease_detail', lease_id=lease.id)
-#     else:
-#         form = LeaseForm(instance=lease)
+class LeaseListView(ListView):
+    model = Lease
+    template_name = 'property_management/lease_list.html'
+    context_object_name = 'leases'
 
-#     return render(request, 'property_management/lease_form.html', {
-#         'form': form,
-#         'lease': lease,
-#         'property': property,
-#         'properties': Property.objects.all(),
-#     })
+    def get_queryset(self):
+        # You can filter by the user’s tenant profile or other conditions
+        return Lease.objects.all()  # Modify as needed
 
-@login_required
-def lease_detail_view(request, lease_id):
+
+def lease_update_view(request, lease_id):
     lease = get_object_or_404(Lease, id=lease_id)
-    return render(request, 'property_management/lease_detail.html', {'lease': lease})
 
+    if request.method == 'POST':
+        form = LeaseForm(request.POST, instance=lease)
+        if form.is_valid():
+            form.save()
+            return redirect('lease_detail', lease_id=lease.id)
+    else:
+        form = LeaseForm(instance=lease)
 
-@login_required
-def lease_list_view(request):
-    leases = Lease.objects.all()  # You can filter by a specific property if needed
-    return render(request, 'property_management/lease_list.html', {
-        'leases': leases,
+    return render(request, 'property_management/lease_form.html', {
+        'form': form,
+        'lease': lease,
     })
 
 
+class LeaseDetailView(DetailView):
+    model = Lease
+    template_name = 'property_management/lease_detail.html'
+    context_object_name = 'lease'
+
+    def get_object(self, queryset=None):
+        # You can add custom logic to ensure the user can only see their own lease or authorized leases
+        lease_id = self.kwargs.get('lease_id')
+        return get_object_or_404(Lease, id=lease_id)
+    
+
+
+# Lease Terminate View
 @login_required
 def lease_terminate_view(request, lease_id):
     lease = get_object_or_404(Lease, id=lease_id)
-    lease.delete()
-    return redirect('lease_list')
+    
+    # Check if the user is allowed to terminate the lease
+    if request.user != lease.tenant.user and request.user != lease.property.owner:
+        return redirect('lease_list')  # or show an error message
+
+    lease.delete()  # Terminate lease
+    return redirect('lease_list')  # Redirect to lease list after termination
 
 
 
 # Review Views
 
-@tenant_required
+@renter_required
 def review_create_view(request, property_id):
     print("Review view called")  # Add debug output
     property_instance = get_object_or_404(Property, id=property_id)
@@ -144,6 +166,8 @@ def review_create_view(request, property_id):
 
 # Listing Views
 
+
+@login_required
 @renter_required
 def listing_create_view(request, property_id):
     property_instance = get_object_or_404(Property, id=property_id)
@@ -157,10 +181,13 @@ def listing_create_view(request, property_id):
             return redirect('property_detail', property_id=property_instance.id)
     else:
         form = ListingForm()
+
     return render(request, 'property_management/listing_form.html', {
         'property': property_instance,
         'form': form,
     })
+
+
 
 # Payment Views
 
@@ -181,3 +208,47 @@ def payment_create_view(request, lease_id):
         'lease': lease,
         'form': form,
     })
+
+
+
+# REST API FOR LEASE
+# class LeaseListCreateAPIView(APIView):
+#     def get(self, request):
+#         # Retrieve all leases
+#         leases = Lease.objects.all()
+#         serializer = LeaseSerializer(leases, many=True)
+#         return Response(serializer.data)
+
+#     def post(self, request):
+#         # Create a new lease
+#         serializer = LeaseSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=201)
+#         return Response(serializer.errors, status=400)
+# # Retrieve, update, or delete a lease
+# class LeaseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Lease.objects.all()
+
+#     def get_serializer_class(self):
+#         if self.request.method in ['PUT', 'PATCH']:
+#             return LeaseCreateSerializer
+#         return LeaseSerializer
+
+# # Terminate a lease (custom API endpoint)
+# class LeaseTerminateAPIView(APIView):
+#     """
+#     API to terminate a lease.
+#     """
+
+#     def delete(self, request, lease_id):
+#         # Fetch the lease object or return 404
+#         lease = get_object_or_404(Lease, id=lease_id)
+
+#         # Check permissions
+#         if request.user != lease.property.owner and request.user != lease.tenant.user:
+#             return Response({"detail": "You are not allowed to terminate this lease."}, status=status.HTTP_403_FORBIDDEN)
+
+#         # Perform the delete operation
+#         lease.delete()
+#         return Response({"detail": "Lease terminated successfully."}, status=status.HTTP_204_NO_CONTENT)

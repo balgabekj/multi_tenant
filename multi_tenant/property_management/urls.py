@@ -6,12 +6,16 @@ from .views import (
     property_update_view,
     property_delete_view,
     lease_create_view,
-    lease_detail_view,
+    LeaseDetailView,
     lease_terminate_view,
     review_create_view,
     listing_create_view,
     payment_create_view,
-    lease_list_view,
+    LeaseListView,
+    lease_update_view,
+    # LeaseListCreateAPIView, 
+    # LeaseDetailAPIView, 
+    # LeaseTerminateAPIView,
     # Additional views you might consider
     # lease_list_view,            # Assuming you want to list all leases
     # listing_list_view,          # Assuming you want to list all listings
@@ -27,11 +31,17 @@ urlpatterns = [
     path('properties/<int:property_id>/reviews/create/', review_create_view, name='review_create'),
     
     # Lease URLs
-    # path('leases/', lease_list_view, name='lease_list'),  # New view for listing all leases
+    path('leases/', LeaseListView.as_view(), name='lease_list'),  # New view for listing all leases
     path('leases/create/<int:property_id>/', lease_create_view, name='lease_create'),
-    path('leases/', lease_list_view, name='lease_list'),
-    path('leases/<int:lease_id>/', lease_detail_view, name='lease_detail'),
+    path('leases/<int:lease_id>/', LeaseDetailView.as_view(), name='lease_detail'),
     path('leases/<int:lease_id>/terminate/', lease_terminate_view, name='lease_terminate'),
+    path('leases/<int:lease_id>/update/', lease_update_view, name='lease_update'),
+
+    # path('leases/', LeaseListCreateAPIView.as_view(), name='lease-list-create'),
+    # path('leases/<int:pk>/', LeaseDetailAPIView.as_view(), name='api_lease_detail'),
+    # path('leases/<int:lease_id>/terminate/', LeaseTerminateAPIView.as_view(), name='lease-terminate'),
+
+
     
     # Listing URLs
     # path('listings/', listing_list_view, name='listing_list'),  # New view for listing all listings
