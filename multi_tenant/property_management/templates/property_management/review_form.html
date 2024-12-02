@@ -1,24 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Leave a Review for {{ property.title }}</h2>
+<h2>Leave a Review for {{ property.title }}</h2>
 
-  <form method="post">
+<!-- Display success or error messages -->
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+<form method="post">
     {% csrf_token %}
     
+    <!-- Rating Field -->
     <div class="form-group">
-      <label for="rating">Rating:</label>
-      {{ form.rating }}
-      <small class="form-text text-muted">Please provide a rating from 1 to 5.</small>
+        <label for="id_rating">Rating:</label>
+        {{ form.rating.errors }}
+        {{ form.rating }}
     </div>
-
+    
+    <!-- Comment Field -->
     <div class="form-group">
-      <label for="comment">Comment:</label>
-      {{ form.comment }}
+        <label for="id_comment">Comment:</label>
+        {{ form.comment.errors }}
+        {{ form.comment }}
     </div>
-
+    
     <button type="submit" class="btn btn-primary">Submit Review</button>
-  </form>
+</form>
 
-  <a href="{% url 'property_detail' property.id %}">Back to Property Details</a>
-  {% endblock %}
+<a href="{% url 'property_detail' property.id %}">Back to Property Details</a>
+{% endblock %}
+  

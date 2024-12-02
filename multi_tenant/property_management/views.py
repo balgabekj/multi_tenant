@@ -1,6 +1,7 @@
+from pyexpat.errors import messages
 from winreg import CreateKey
 from amqp import NotFound
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import redirect, render, get_object_or_404, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
@@ -146,99 +147,33 @@ def lease_terminate_view(request, lease_id):
 
 
 
-class ReviewCreateView(CreateView):
-    model = Review
-    form_class = ReviewForm
-    template_name = 'property_management/review_form.html'
+@login_required
+def review_create_view(request, property_id):
+    # Get the property instance for which the review is being created
+    property_instance = get_object_or_404(Property, id=property_id)
 
-    def form_valid(self, form):
-        property_instance = get_object_or_404(Property, id=self.kwargs['property_id'])
-        form.instance.property = property_instance
-        form.instance.tenant = self.request.user.tenant_profile
-        return super().form_valid(form)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.property = property_instance
+            review.tenant = request.user.tenant_profile  # Assuming tenant_profile is a related field
+            review.save()
+            messages.success(request, "Review submitted successfully.")
+            return redirect('property_detail', property_id=property_instance.id)
+        else:
+            # If the form is invalid, handle errors
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = ReviewForm()
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['property'] = get_object_or_404(Property, id=self.kwargs['property_id'])
-        return context
-
-    def get_success_url(self):
-        return reverse('property_detail', kwargs={'property_id': self.kwargs['property_id']})
-
-
-
-# REST API for Review
-# class ReviewListCreateAPIView(ListCreateAPIView):
-#     queryset = Review.objects.all()
-#     serializer_class = ReviewSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     def perform_create(self, serializer):
-#         # Automatically set the tenant and property for the review
-#         serializer.save(tenant=self.request.user.tenant_profile)
-#     permission_classes = [IsAuthenticated]
-
-#     def get(self, request, property_id):
-#         reviews = Review.objects.filter(property_id=property_id)
-#         serializer = ReviewSerializer(reviews, many=True)
-#         return Response(serializer.data)
-
-#     def post(self, request, property_id):
-#         property_instance = Property.objects.filter(id=property_id).first()
-#         if not property_instance:
-#             return Response({"error": "Property not found"}, status=status.HTTP_404_NOT_FOUND)
-
-#         serializer = ReviewSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save(property=property_instance, tenant=request.user.tenant_profile)
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return render(request, 'property_management/review_form.html', {
+        'form': form,
+        'property': property_instance,
+    })
 
 
-# class ReviewDetailAPIView(RetrieveUpdateDestroyAPIView):
-#     queryset = Review.objects.all()
-#     serializer_class = ReviewSerializer
-#     permission_classes = [IsAuthenticated]
 
-#     def get_object(self):
-#         """
-#         Override `get_object` to ensure the review belongs to the user's tenant profile.
-#         """
-#         user = self.request.user
-
-#         # Check if the user has a tenant_profile
-#         if not hasattr(user, 'tenant_profile'):
-#             raise PermissionDenied("You do not have the necessary permissions to access this resource.")
-
-#         # Filter the review to ensure it belongs to the authenticated user's tenant profile
-#         review_id = self.kwargs.get('review_id')
-#         review = Review.objects.filter(id=review_id, tenant=user.tenant_profile).first()
-
-#         if not review:
-#             raise NotFound("Review not found or you do not have access to it.")
-
-#         return review
-
-#     def put(self, request, *args, **kwargs):
-#         """
-#         Handle updating a review.
-#         """
-#         review = self.get_object()  # Use the overridden `get_object` method
-#         serializer = ReviewSerializer(review, data=request.data, partial=True)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#     def delete(self, request, *args, **kwargs):
-#         """
-#         Handle deleting a review.
-#         """
-#         review = self.get_object()  # Use the overridden `get_object` method
-#         review.delete()
-#         return Response({"message": "Review deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
-    
-    
 
 # Listing Views
 
