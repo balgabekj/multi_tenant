@@ -17,17 +17,18 @@ from django.views.generic import ListView
 
 
 # Create your views here.
-
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            user.role = form.cleaned_data.get('role')  # Сохраняем роль
+            user.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}')
-            return redirect('tenant_dashboard')  # Use the correct URL name here
+            return redirect('login')  # После регистрации перенаправьте на login
         else:
-            print(form.errors)  # Debugging: print form errors
+            print(form.errors)  # Debugging: печать ошибок
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})

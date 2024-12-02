@@ -1,6 +1,6 @@
 from pyexpat.errors import messages
 from winreg import CreateKey
-from amqp import NotFound
+# from amqp import NotFound
 from django.http import HttpResponseNotFound
 from django.shortcuts import redirect, render, get_object_or_404, HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -166,6 +166,27 @@ class ReviewCreateView(CreateView):
     def get_success_url(self):
         return reverse('property_detail', kwargs={'property_id': self.kwargs['property_id']})
 
+
+
+@login_required
+@tenant_required
+def review_create_view(request, property_id):
+    property_instance = get_object_or_404(Property, id=property_id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.property = property_instance
+            review.tenant = request.user.tenant_profile
+            review.save()
+            return redirect('property_detail', property_id=property_id)
+    else:
+        form = ReviewForm()
+
+    return render(request, 'property_management/review_form.html', {
+        'form': form,
+        'property': property_instance,
+    })
 
 
 # REST API for Review
