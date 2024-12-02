@@ -42,7 +42,7 @@ urlpatterns = [
     # path('leases/<int:pk>/', LeaseDetailAPIView.as_view(), name='api_lease_detail'),
     # path('leases/<int:lease_id>/terminate/', LeaseTerminateAPIView.as_view(), name='lease-terminate'),
 
-    #Review with API DRF and CRUD operations
+    # Review with API DRF and CRUD operations
 
     # path('api/reviews/<int:property_id>/', ReviewListCreateAPIView.as_view(), name='review-list-create'),
     # path('api/reviews/detail/<int:review_id>/', ReviewDetailAPIView.as_view(), name='review-detail'),
@@ -50,7 +50,7 @@ urlpatterns = [
     
     # Listing URLs
     # path('listings/', listing_list_view, name='listing_list'),  # New view for listing all listings
-    path('listings/create/<int:property_id>/', listing_create_view, name='listing_create'),
+    path('listings/create/', listing_create_view, name='listing_create'),
     
     # Payment URLs
     path('payments/create/<int:lease_id>/', payment_create_view, name='payment_create'),

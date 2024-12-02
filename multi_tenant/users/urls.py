@@ -7,7 +7,7 @@ urlpatterns = [
     path('logout/', user_logout, name='logout'),
     path('profile/', UserProfileView.as_view(), name='profile'),
     path('tenant_dashboard', tenant_dashboard, name='tenant_dashboard'),
-    path('tenant_dashboard', tenant_dashboard, name='tenant_dashboard'),
+    path('renter_dashboard', renter_dashboard, name='renter_dashboard'),
 
     # Tenant-specific actions
     path('rented-property/', view_renting_property, name='rented-property'),
