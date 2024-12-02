@@ -1,4 +1,3 @@
-
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
@@ -14,21 +13,25 @@ from .models import CustomUser, Tenant, Renter
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import timedelta
 from django.views.generic import ListView
-from property_management.models import Property
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Tenant, Renter
+from .serializers import TenantSerializer, RenterSerializer
 # Create your views here.
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.role = form.cleaned_data.get('role')  # Сохраняем роль
+            user.set_password(form.cleaned_data['password1'])
             user.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}')
-            return redirect('login')  # После регистрации перенаправьте на login
+            role = form.cleaned_data.get('role')
+            messages.success(request, f'Account created for {user.username} with role {role}')
+            return redirect('login')  # Перенаправление на страницу логина
         else:
-            print(form.errors)  # Debugging: печать ошибок
+            print(form.errors)  # Debugging: вывод ошибок
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
@@ -37,8 +40,9 @@ def user_login(request: HttpRequest):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        role = request.POST.get('role')
         user = authenticate(request, username=username, password=password)
-        if user is not None:
+        if user is not None and user.role == role: 
             login(request, user)
             return redirect_user_by_role(user)
         else:
@@ -108,11 +112,10 @@ def prolongate_rental_agreement(request):
     return redirect('profile')
 
 class UpdatePaymentMethodView(LoginRequiredMixin, UpdateView):
-    model = Tenant
+    model = Renter
     fields = ['payment_method']
     template_name = 'users/update_payment.html'
     success_url = reverse_lazy('profile')
-
     def get_object(self):
         return self.request.user.tenant_profile
 
@@ -142,14 +145,29 @@ def terminate_lease(request, lease_id):
 
 #admin views and models need to be added 
 
-@login_required
-@renter_required
-def view_my_property(request):
-    # Fetch properties owned by the logged-in user
-    user_properties = Property.objects.filter(owner=request.user)
 
-    return render(request, 'users/my_properties.html', {
-        'properties': user_properties
-    })
+class TenantListView(APIView):
+    def get(self, request):
+        tenants = Tenant.objects.all()
+        serializer = TenantSerializer(tenants, many=True)
+        return Response(serializer.data)
 
+    def post(self, request):
+        serializer = TenantSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class RenterListView(APIView):
+    def get(self, request):
+        renters = Renter.objects.all()
+        serializer = RenterSerializer(renters, many=True)
+        return Response(serializer.data)
 
+    def post(self, request):
+        serializer = RenterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

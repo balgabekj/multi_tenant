@@ -2,6 +2,9 @@ from django.urls import path
 from .views import RenterLeasesView, UpdatePaymentMethodView, UserProfileView, prolongate_rental_agreement, register, renew_lease, terminate_lease, terminate_rental_agreement, user_login, user_logout, view_renting_property, tenant_dashboard, renter_dashboard, view_my_property
 
 urlpatterns = [
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
     path('register/', register, name='register'),
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
@@ -16,4 +19,3 @@ urlpatterns = [
 ]
 
 handler403 = 'django.views.defaults.permission_denied'
-
