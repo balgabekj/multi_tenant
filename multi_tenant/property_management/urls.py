@@ -8,12 +8,11 @@ from .views import (
     lease_create_view,
     LeaseDetailView,
     lease_terminate_view,
-    ReviewCreateView,
+    review_create_view,
     listing_create_view,
     payment_create_view,
     LeaseListView,
     lease_update_view,
-    ReviewListCreateAPIView,
     # ReviewDetailAPIView,
     # LeaseListCreateAPIView, 
     # LeaseDetailAPIView, 
@@ -30,7 +29,7 @@ urlpatterns = [
     path('properties/create/', property_create_view, name='property_create'),
     path('properties/<int:property_id>/update/', property_update_view, name='property_update'),
     path('properties/<int:property_id>/delete/', property_delete_view, name='property_delete'),
-    path('properties/<int:property_id>/reviews/create/', ReviewCreateView.as_view(), name='review_create'),    
+    path('properties/<int:property_id>/reviews/create/', review_create_view, name='review_create'),    
     # Lease URLs
     path('leases/', LeaseListView.as_view(), name='lease_list'),  # New view for listing all leases
     path('leases/create/<int:property_id>/', lease_create_view, name='lease_create'),
