@@ -18,7 +18,8 @@ from .models import Lease, Property, Tenant
 from rest_framework.views import APIView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
-
+from django.http import HttpResponseForbidden
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Property Views
@@ -27,15 +28,15 @@ def property_list_view(request):
     properties = Property.objects.filter(is_available=True)
     return render(request, 'property_management/property_list.html', {'properties': properties})
 
-
 def property_detail_view(request, property_id):
     property_instance = get_object_or_404(Property, id=property_id)
     reviews = property_instance.reviews.all()
     return render(request, 'property_management/property_detail.html', {
         'property': property_instance, 
-        'reviews': reviews
+        'reviews': reviews,
     })
 
+@renter_required
 @login_required
 def property_create_view(request):
     if request.method == 'POST':
@@ -48,7 +49,7 @@ def property_create_view(request):
     else:
         form = PropertyForm()
     return render(request, 'property_management/property_form.html', {'form': form})
-
+@renter_required
 @login_required
 def property_update_view(request, property_id):
     property_instance = get_object_or_404(Property, id=property_id)
@@ -63,7 +64,7 @@ def property_update_view(request, property_id):
         'form': form, 
         'property': property_instance
     })
-
+@renter_required
 @login_required
 def property_delete_view(request, property_id):
     property_instance = get_object_or_404(Property, id=property_id)
@@ -71,17 +72,16 @@ def property_delete_view(request, property_id):
     return redirect('property_list')
 
 # Lease Views
-
-@tenant_required
+@login_required
 def lease_create_view(request, property_id):
     property_instance = get_object_or_404(Property, id=property_id)
-    
+    tenant_profile = request.user.tenant_profile
     if request.method == 'POST':
         form = LeaseForm(request.POST)
         if form.is_valid():
             lease = form.save(commit=False)
             lease.property = property_instance
-            lease.tenant = request.user.tenant_profile  # Automatically assign logged-in user as tenant
+            lease.tenant = tenant_profile  # Set the tenant profile
             lease.save()
             return redirect('lease_detail', lease_id=lease.id)
     else:
@@ -90,20 +90,23 @@ def lease_create_view(request, property_id):
     return render(request, 'property_management/lease_form.html', {
         'form': form,
         'property': property_instance,
-        'properties': Property.objects.all(),
     })
 
-
-class LeaseListView(ListView):
+class LeaseListView(LoginRequiredMixin, ListView):
     model = Lease
     template_name = 'property_management/lease_list.html'
     context_object_name = 'leases'
 
     def get_queryset(self):
-        # You can filter by the user’s tenant profile or other conditions
-        return Lease.objects.all()  # Modify as needed
+        user = self.request.user
+        if hasattr(user, 'tenant_profile'):  # Если пользователь - арендатор
+            return Lease.objects.filter(tenant=user.tenant_profile)
+        elif hasattr(user, 'renter_profile'):  # Если пользователь - владелец
+            return Lease.objects.filter(renter=user.renter_profile)
+        else:
+            return Lease.objects.none()  # Нет доступа
 
-
+@login_required
 def lease_update_view(request, lease_id):
     lease = get_object_or_404(Lease, id=lease_id)
 
@@ -120,17 +123,14 @@ def lease_update_view(request, lease_id):
         'lease': lease,
     })
 
-
-class LeaseDetailView(DetailView):
+class LeaseDetailView(LoginRequiredMixin, DetailView):
     model = Lease
     template_name = 'property_management/lease_detail.html'
     context_object_name = 'lease'
-
     def get_object(self, queryset=None):
-        # You can add custom logic to ensure the user can only see their own lease or authorized leases
         lease_id = self.kwargs.get('lease_id')
         return get_object_or_404(Lease, id=lease_id)
-    
+
 
 
 # Lease Terminate View

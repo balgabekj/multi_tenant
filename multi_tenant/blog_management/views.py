@@ -4,7 +4,7 @@ from .models import BlogPost, Comment, Message, Notification
 from .forms import BlogPostForm, BlogPostCreateForm, BlogPostUpdateForm, CommentForm, MessageForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-
+from users.models import CustomUser
 
 # BlogPost views
 

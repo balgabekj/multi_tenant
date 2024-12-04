@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RenterLeasesView, UpdatePaymentMethodView, UserProfileView, prolongate_rental_agreement, register, renew_lease, terminate_lease, terminate_rental_agreement, user_login, user_logout, view_renting_property, tenant_dashboard, renter_dashboard
+from .views import RenterLeasesView, UpdatePaymentMethodView, UserProfileView, prolongate_rental_agreement, register, renew_lease, terminate_lease, terminate_rental_agreement, user_login, user_logout, view_renting_property, tenant_dashboard, renter_dashboard, view_my_property
 
 urlpatterns = [
     path('register/', register, name='register'),
@@ -11,14 +11,8 @@ urlpatterns = [
 
     # Tenant-specific actions
     path('rented-property/', view_renting_property, name='rented-property'),
-    path('terminate-agreement/', terminate_rental_agreement, name='terminate-agreement'),
-    path('prolongate-agreement/', prolongate_rental_agreement, name='prolongate-agreement'),
-    path('update-payment/', UpdatePaymentMethodView.as_view(), name='update-payment'),
 
-    # Renter-specific actions
-    path('leases/', RenterLeasesView.as_view(), name='renter-leases'),
-    path('leases/renew/<int:lease_id>/', renew_lease, name='renew-lease'),
-    path('leases/terminate/<int:lease_id>/', terminate_lease, name='terminate-lease'),
+    path('my-properties/', view_my_property, name='my-properties'),
 ]
 
 handler403 = 'django.views.defaults.permission_denied'

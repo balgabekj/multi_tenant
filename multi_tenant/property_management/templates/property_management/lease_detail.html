@@ -1,13 +1,17 @@
-{% extends 'base.html' %}
+<h1>Lease Details</h1>
+<p><strong>Tenant:</strong> {{ lease.tenant }}</p>
+<p><strong>Property:</strong> {{ lease.property }}</p>
+<p><strong>Start Date:</strong> {{ lease.lease_start_date }}</p>
+<p><strong>End Date:</strong> {{ lease.lease_end_date }}</p>
+<p><strong>Rent Amount:</strong> {{ lease.rent_amount }}</p>
+<p><strong>Status:</strong> {% if lease.is_active %} Active {% else %} Terminated {% endif %}</p>
+<a href="{% url 'lease_update' lease.id %}">Edit Lease</a>
+<a href="{% url 'lease_list' %}">Back to Lease List</a>
+{% if lease.is_active %}
+    <form action="{% url 'lease_terminate' lease.id %}" method="POST" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Terminate Lease</button>
+    </form>
+{% endif %}
 
-{% block content %}
-  <h2>Lease Details for {{ lease.property.name }}</h2>
 
-  <h3>Tenant: {{ lease.tenant }}</h3>
-  <p><strong>Start Date:</strong> {{ lease.start_date }}</p>
-  <p><strong>End Date:</strong> {{ lease.end_date }}</p>
-  <p><strong>Status:</strong> {% if lease.is_active %}Active{% else %}Terminated{% endif %}</p>
-  
-  <a href="{% url 'lease_update' lease.id %}">Edit Lease</a>
-  <a href="{% url 'property_detail' lease.property.id %}">Back to Property</a>
-{% endblock %}

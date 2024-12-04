@@ -7,9 +7,11 @@ class PropertyForm(forms.ModelForm):
         fields = ['title', 'address', 'city', 'state', 'postal_code', 'rent_price', 'description', 'available_from', 'is_available']
 
 class LeaseForm(forms.ModelForm):
+    lease_start_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    lease_end_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     class Meta:
         model = Lease
-        fields = ['tenant', 'lease_start_date', 'lease_end_date', 'rent_amount']
+        fields = ['lease_start_date', 'lease_end_date', 'rent_amount', 'is_active']
 
 class ReviewForm(forms.ModelForm):
     class Meta:

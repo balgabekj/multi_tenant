@@ -1,16 +1,9 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  <h2>{% if lease %}Update Lease for {{ lease.property.name }}{% else %}Create Lease for {{ property.name }}{% endif %}</h2>
-
-  <form method="POST">
+<h1>Create Lease for {{ property.title }}</h1>
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
 
-    <button type="submit" class="btn btn-primary">
-      {% if lease %}Update Lease{% else %}Create Lease{% endif %}
-    </button>
-  </form>
 
-  <a href="{% url 'property_list' %}">Back to Property List</a>
-{% endblock %}
+

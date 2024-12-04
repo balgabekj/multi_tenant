@@ -38,6 +38,7 @@ urlpatterns = [
     path('leases/<int:lease_id>/', LeaseDetailView.as_view(), name='lease_detail'),
     path('leases/<int:lease_id>/terminate/', lease_terminate_view, name='lease_terminate'),
     path('leases/<int:lease_id>/update/', lease_update_view, name='lease_update'),
+    
 
 
 

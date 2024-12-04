@@ -14,7 +14,7 @@ from .models import CustomUser, Tenant, Renter
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import timedelta
 from django.views.generic import ListView
-
+from property_management.models import Property
 
 # Create your views here.
 def register(request):
@@ -75,8 +75,10 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
-@tenant_required
+
+        
 @login_required
+@tenant_required
 def view_renting_property(request):
     try:
         tenant_profile = request.user.tenant_profile
@@ -88,7 +90,7 @@ def view_renting_property(request):
 
 
 @tenant_required
-@login_required
+
 def terminate_rental_agreement(request):
     tenant_profile = request.user.tenant_profile
     if tenant_profile:
@@ -139,3 +141,15 @@ def terminate_lease(request, lease_id):
     return redirect('renter-leases')
 
 #admin views and models need to be added 
+
+@login_required
+@renter_required
+def view_my_property(request):
+    # Fetch properties owned by the logged-in user
+    user_properties = Property.objects.filter(owner=request.user)
+
+    return render(request, 'users/my_properties.html', {
+        'properties': user_properties
+    })
+
+

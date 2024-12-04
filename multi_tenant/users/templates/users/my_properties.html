@@ -1,0 +1,16 @@
+<h1>My Properties</h1>
+
+{% if properties %}
+    <ul>
+        {% for property in properties %}
+            <li>
+                <strong>{{ property.title }}</strong> - {{ property.address }}<br>
+                Rent Price: {{ property.rent_price }}<br>
+                Available From: {{ property.available_from }}<br>
+                <a href="{% url 'property_detail' property.id %}">View Details</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no properties listed.</p>
+{% endif %}

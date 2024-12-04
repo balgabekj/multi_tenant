@@ -20,12 +20,14 @@
             <li>No reviews yet.</li>
         {% endfor %}
     </ul>
-    
+
+    <h2>Actions</h2>
     <a href="{% url 'review_create' property.id %}">Add Review</a>
     <a href="{% url 'property_update' property.id %}">Edit Property</a>
-    <form action="{% url 'property_delete' property.id %}" method="post">
+    <form action="{% url 'property_delete' property.id %}" method="post" style="display: inline;">
         {% csrf_token %}
         <button type="submit">Delete Property</button>
     </form>
+    <a href="{% url 'lease_create' property.id %}" class="btn">Create Lease</a>
 </body>
 </html>
