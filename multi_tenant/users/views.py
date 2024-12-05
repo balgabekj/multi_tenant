@@ -15,6 +15,10 @@ from datetime import timedelta
 from django.views.generic import ListView
 from property_management.models import Property
 
+
+def home(request):
+    return render(request, 'users/home.html')
+
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -141,27 +145,43 @@ class UpdatePaymentMethodAPIView(APIView):
             return Response({"message": "Payment method updated successfully."}, status=HTTP_200_OK)
         except AttributeError:
             return Response({"error": "User does not have a tenant profile."}, status=HTTP_400_BAD_REQUEST)
+        
 
-class RenterLeasesView(LoginRequiredMixin, ListView):
-    model = Lease
-    template_name = 'users/renter_leases.html'
-    context_object_name = 'leases'
+from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView
+from property_management.models import Lease
+@method_decorator(login_required, name='dispatch')
+class RenterLeasesView(TemplateView):
+    template_name = "users/renter_leases.html"
 
-    def get_queryset(self):
-        return self.request.user.renter_profile.lease_history.all()
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            tenant_profile = self.request.user.tenant_profile
+            context['leases'] = Lease.objects.filter(tenant=tenant_profile)
+        except AttributeError:
+            context['leases'] = []  # If tenant_profile is not found, provide an empty list
+        return context
 @login_required
 def renew_lease(request, lease_id):
     lease = Lease.objects.get(id=lease_id)
-    lease.end_date += timedelta(days=30)  # Extend lease by 30 days
+    lease.lease_end_date += timedelta(days=30)  # Extend lease by 30 days
     lease.save()
     return redirect('renter-leases')
 
+
+
+
 @login_required
 def terminate_lease(request, lease_id):
-    lease = Lease.objects.get(id=lease_id)
-    lease.active = False
-    lease.save()
+    try:
+        # Fetch the lease related to the tenant or property they are associated with
+        lease = Lease.objects.get(id=lease_id, tenant=request.user.renter_profile)
+        lease.is_active = False  # Mark the lease as inactive
+        lease.save()
+        messages.success(request, "Lease terminated successfully!")
+    except Lease.DoesNotExist:
+        messages.error(request, "Lease not found or you do not have permission to terminate it.")
     return redirect('renter-leases')
 
 #admin views and models need to be added 
