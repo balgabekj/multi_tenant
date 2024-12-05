@@ -1,23 +1,32 @@
-{% block title %}My Lease History{% endblock %}
-
+{% extends "base.html" %}
 {% block content %}
-<div class="container mt-5">
-    <h2>My Lease History</h2>
-    {% if leases %}
-        <ul class="list-group">
+<h1>My Leases</h1>
+
+{% if leases %}
+    <table>
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
             {% for lease in leases %}
-                <li class="list-group-item">
-                    <h5 class="mb-1">{{ lease.property.name }}</h5>
-                    <p class="mb-1">
-                        <strong>Lease Start Date:</strong> {{ lease.start_date|date:"F j, Y" }}<br>
-                        <strong>Lease End Date:</strong> {{ lease.end_date|date:"F j, Y" }}<br>
-                        <strong>Rent Amount:</strong> ${{ lease.rent_amount }}
-                    </p>
-                </li>
+            <tr>
+                <td>{{ lease.property.name }}</td>
+                <td>{{ lease.start_date }}</td>
+                <td>{{ lease.end_date }}</td>
+                <td>
+                    <a href="{% url 'renew-lease' lease.id %}">Renew Lease</a>
+                    <a href="{% url 'terminate-lease' lease.id %}">Terminate Lease</a>
+                </td>
+            </tr>
             {% endfor %}
-        </ul>
-    {% else %}
-        <p>You don't have any lease history.</p>
-    {% endif %}
-</div>
+        </tbody>
+    </table>
+{% else %}
+    <p>You currently have no leases.</p>
+{% endif %}
 {% endblock %}
