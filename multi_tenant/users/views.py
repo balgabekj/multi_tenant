@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from property_management.models import Lease
+from property_management.models import Lease, Property
 from .forms import UserRegisterForm
 from users.decorators import tenant_required, renter_required
 from django.views.generic import UpdateView
@@ -16,8 +16,10 @@ from django.views.generic import ListView
 from property_management.models import Property
 
 
+
 def home(request):
-    return render(request, 'users/home.html')
+    properties = Property.objects.all()[:2]  
+    return render(request, 'users/home.html', {'properties': properties})
 
 # Create your views here.
 def register(request):

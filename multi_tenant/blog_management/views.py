@@ -161,3 +161,57 @@ def delete_notification(request, notification_id):
     return redirect('notification_list')
 
 
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
+from django.http import HttpResponse
+from django.db.models import Avg, Count
+from django.shortcuts import render
+from .models import BlogPost
+
+def analytics_view(request):
+    # Собираем данные о среднем количестве комментариев на пост
+    blog_posts = BlogPost.objects.annotate(comment_count=Count('comments'))
+    avg_comments = blog_posts.aggregate(avg_comments=Avg('comment_count'))['avg_comments'] or 0
+
+    # Данные для диаграммы
+    titles = [post.title or f"Post {post.id}" for post in blog_posts]
+    comment_counts = [post.comment_count for post in blog_posts]
+
+    # Настройка диаграммы
+    plt.figure(figsize=(12, 7))
+    colors = plt.cm.Paired(range(len(titles)))  # Используем палитру цветов
+    bars = plt.bar(titles, comment_counts, color=colors, edgecolor="black")
+
+    # Линия среднего значения
+    plt.axhline(y=avg_comments, color='red', linestyle='--', label=f"Average: {avg_comments:.2f}")
+
+    # Подписи на столбцах
+    for bar, count in zip(bars, comment_counts):
+        plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), f"{count}", 
+                 ha='center', va='bottom', fontsize=10, color="black", fontweight="bold")
+
+    # Настройка внешнего вида
+    plt.title("Average Comments per Blog Post", fontsize=16, fontweight='bold', color="darkblue")
+    plt.xlabel("Blog Posts", fontsize=14, fontweight='bold')
+    plt.ylabel("Number of Comments", fontsize=14, fontweight='bold')
+    plt.xticks(rotation=30, ha='right', fontsize=12)
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+    plt.legend(fontsize=12)
+
+    # Сохранение диаграммы в поток
+    buffer = BytesIO()
+    plt.tight_layout()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_png = buffer.getvalue()
+    buffer.close()
+
+    # Конвертируем изображение в base64
+    graphic = base64.b64encode(image_png).decode('utf-8')
+
+    # Передача данных в шаблон
+    return render(request, 'analytics.html', {
+        'graphic': graphic,
+        'avg_comments': avg_comments,
+    })

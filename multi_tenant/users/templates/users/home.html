@@ -13,7 +13,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .container {
@@ -22,10 +22,35 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 90%;
         }
 
         h1 {
             color: #333;
+        }
+
+        .property-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .property-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+
+        .property-item h3 {
+            margin: 0 0 5px;
+            color: #007bff;
+        }
+
+        .property-item p {
+            margin: 5px 0;
+            color: #555;
         }
 
         .buttons {
@@ -59,8 +84,30 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Property Management</h1>
-        <p>Manage your rental properties efficiently.</p>
+        <h1>Multi Tenant</h1>
+        <p>Browse available properties for rent.</p>
+
+        <div class="property-list">
+            <h2>Available Properties</h2>
+            {% if properties %}
+                {% for property in properties %}
+                <div class="property-item">
+                    <h3>{{ property.title }}</h3>
+                    <p><strong>Address:</strong> {{ property.address }}, {{ property.city }}, {{ property.state }}</p>
+                    <p><strong>Rent Price:</strong> ${{ property.rent_price }}</p>
+                    <p><strong>Available From:</strong> {{ property.available_from }}</p>
+                    <p><strong>Status:</strong> {{ property.is_available|yesno:"Available,Not Available" }}</p>
+                    <p>{{ property.description }}</p>
+                </div>
+                {% endfor %}
+                {% if properties|length > 2 %}
+                <p>And more... <a href="{% url 'property_list' %}">View all properties</a></p>
+                {% endif %}
+            {% else %}
+                <p>No properties available at the moment. Please check back later.</p>
+            {% endif %}
+        </div>
+
         <div class="buttons">
             <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
             <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
