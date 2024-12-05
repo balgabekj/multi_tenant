@@ -1,4 +1,3 @@
-
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
@@ -89,34 +88,59 @@ def view_renting_property(request):
     return render(request, 'users/view_rented_property.html', {'property': rented_property})
 
 
-@tenant_required
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def terminate_rental_agreement(request):
-    tenant_profile = request.user.tenant_profile
-    if tenant_profile:
-        tenant_profile.rented_property = None
-        tenant_profile.save()
-        return redirect('profile') 
-
-@tenant_required
-@login_required
-def prolongate_rental_agreement(request):
-    tenant_profile = request.user.tenant_profile
-    if tenant_profile and tenant_profile.lease_end_date:
-        tenant_profile.lease_end_date += timedelta(days=30) 
-        tenant_profile.save()
-    return redirect('profile')
-
-class UpdatePaymentMethodView(LoginRequiredMixin, UpdateView):
-    model = Tenant
-    fields = ['payment_method']
-    template_name = 'users/update_payment.html'
-    success_url = reverse_lazy('profile')
-
-    def get_object(self):
-        return self.request.user.tenant_profile
+    user = request.user
+    try:
+        tenant_profile = user.tenant_profile
+        if tenant_profile:
+            tenant_profile.rented_property = None
+            tenant_profile.save()
+            return Response({"message": "Rental agreement terminated successfully."}, status=200)
+        return Response({"error": "No tenant profile found."}, status=404)
+    except Exception as e:
+        return Response({"error": str(e)}, status=500)
 
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+
+class ProlongateRentalAgreementView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            tenant_profile = request.user.tenant_profile  # Ensure the user has a tenant profile
+            if tenant_profile and tenant_profile.lease_end_date:
+                tenant_profile.lease_end_date += timedelta(days=30)  # Extend lease by 30 days
+                tenant_profile.save()
+                return Response({"message": "Rental agreement prolonged by 30 days."}, status=HTTP_200_OK)
+            return Response({"error": "No lease to prolong."}, status=HTTP_400_BAD_REQUEST)
+        except AttributeError:
+            return Response({"error": "User does not have a tenant profile."}, status=HTTP_400_BAD_REQUEST)
+
+
+class UpdatePaymentMethodAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            tenant_profile = request.user.tenant_profile  # Ensure the user has a tenant profile
+            payment_method = request.data.get('payment_method')
+            if not payment_method:
+                return Response({"error": "Payment method is required."}, status=HTTP_400_BAD_REQUEST)
+            tenant_profile.payment_method = payment_method
+            tenant_profile.save()
+            return Response({"message": "Payment method updated successfully."}, status=HTTP_200_OK)
+        except AttributeError:
+            return Response({"error": "User does not have a tenant profile."}, status=HTTP_400_BAD_REQUEST)
 
 class RenterLeasesView(LoginRequiredMixin, ListView):
     model = Lease
@@ -151,5 +175,3 @@ def view_my_property(request):
     return render(request, 'users/my_properties.html', {
         'properties': user_properties
     })
-
-
