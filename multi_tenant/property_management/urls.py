@@ -39,13 +39,6 @@ urlpatterns = [
     path('leases/<int:lease_id>/terminate/', lease_terminate_view, name='lease_terminate'),
     path('leases/<int:lease_id>/update/', lease_update_view, name='lease_update'),
     
-
-
-
-    # Listing URLs
-    # path('listings/', listing_list_view, name='listing_list'),  # New view for listing all listings
-    path('listings/create/', listing_create_view, name='listing_create'),
-    
     # Payment URLs
     path('payments/create/<int:lease_id>/', payment_create_view, name='payment_create'),
 ]

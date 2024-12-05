@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,6 +68,8 @@ TEMPLATES = [
         'DIRS': [
             # Add the following line to include DRF templates
             'path_to_virtualenv/lib/python3.x/site-packages/rest_framework/templates',
+            # 'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Templates folder
+            os.path.join(BASE_DIR, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
