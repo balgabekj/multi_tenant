@@ -13,25 +13,21 @@ from .models import CustomUser, Tenant, Renter
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import timedelta
 from django.views.generic import ListView
+from property_management.models import Property
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from .models import Tenant, Renter
-from .serializers import TenantSerializer, RenterSerializer
 # Create your views here.
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password1'])
+            user.role = form.cleaned_data.get('role')  # Сохраняем роль
             user.save()
-            role = form.cleaned_data.get('role')
-            messages.success(request, f'Account created for {user.username} with role {role}')
-            return redirect('login')  # Перенаправление на страницу логина
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}')
+            return redirect('login')  # После регистрации перенаправьте на login
         else:
-            print(form.errors)  # Debugging: вывод ошибок
+            print(form.errors)  # Debugging: печать ошибок
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
@@ -40,9 +36,8 @@ def user_login(request: HttpRequest):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        role = request.POST.get('role')
         user = authenticate(request, username=username, password=password)
-        if user is not None and user.role == role: 
+        if user is not None:
             login(request, user)
             return redirect_user_by_role(user)
         else:
@@ -93,33 +88,59 @@ def view_renting_property(request):
     return render(request, 'users/view_rented_property.html', {'property': rented_property})
 
 
-@tenant_required
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def terminate_rental_agreement(request):
-    tenant_profile = request.user.tenant_profile
-    if tenant_profile:
-        tenant_profile.rented_property = None
-        tenant_profile.save()
-        return redirect('profile') 
-
-@tenant_required
-@login_required
-def prolongate_rental_agreement(request):
-    tenant_profile = request.user.tenant_profile
-    if tenant_profile and tenant_profile.lease_end_date:
-        tenant_profile.lease_end_date += timedelta(days=30) 
-        tenant_profile.save()
-    return redirect('profile')
-
-class UpdatePaymentMethodView(LoginRequiredMixin, UpdateView):
-    model = Renter
-    fields = ['payment_method']
-    template_name = 'users/update_payment.html'
-    success_url = reverse_lazy('profile')
-    def get_object(self):
-        return self.request.user.tenant_profile
+    user = request.user
+    try:
+        tenant_profile = user.tenant_profile
+        if tenant_profile:
+            tenant_profile.rented_property = None
+            tenant_profile.save()
+            return Response({"message": "Rental agreement terminated successfully."}, status=200)
+        return Response({"error": "No tenant profile found."}, status=404)
+    except Exception as e:
+        return Response({"error": str(e)}, status=500)
 
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+
+class ProlongateRentalAgreementView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            tenant_profile = request.user.tenant_profile  # Ensure the user has a tenant profile
+            if tenant_profile and tenant_profile.lease_end_date:
+                tenant_profile.lease_end_date += timedelta(days=30)  # Extend lease by 30 days
+                tenant_profile.save()
+                return Response({"message": "Rental agreement prolonged by 30 days."}, status=HTTP_200_OK)
+            return Response({"error": "No lease to prolong."}, status=HTTP_400_BAD_REQUEST)
+        except AttributeError:
+            return Response({"error": "User does not have a tenant profile."}, status=HTTP_400_BAD_REQUEST)
+
+
+class UpdatePaymentMethodAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            tenant_profile = request.user.tenant_profile  # Ensure the user has a tenant profile
+            payment_method = request.data.get('payment_method')
+            if not payment_method:
+                return Response({"error": "Payment method is required."}, status=HTTP_400_BAD_REQUEST)
+            tenant_profile.payment_method = payment_method
+            tenant_profile.save()
+            return Response({"message": "Payment method updated successfully."}, status=HTTP_200_OK)
+        except AttributeError:
+            return Response({"error": "User does not have a tenant profile."}, status=HTTP_400_BAD_REQUEST)
 
 class RenterLeasesView(LoginRequiredMixin, ListView):
     model = Lease
@@ -145,29 +166,12 @@ def terminate_lease(request, lease_id):
 
 #admin views and models need to be added 
 
+@login_required
+@renter_required
+def view_my_property(request):
+    # Fetch properties owned by the logged-in user
+    user_properties = Property.objects.filter(owner=request.user)
 
-class TenantListView(APIView):
-    def get(self, request):
-        tenants = Tenant.objects.all()
-        serializer = TenantSerializer(tenants, many=True)
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = TenantSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-class RenterListView(APIView):
-    def get(self, request):
-        renters = Renter.objects.all()
-        serializer = RenterSerializer(renters, many=True)
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = RenterSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return render(request, 'users/my_properties.html', {
+        'properties': user_properties
+    })

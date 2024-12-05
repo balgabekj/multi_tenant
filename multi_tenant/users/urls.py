@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RenterLeasesView, UserProfileView, register, renew_lease, terminate_lease, terminate_rental_agreement, user_login, user_logout, view_renting_property, tenant_dashboard
+from .views import RenterLeasesView, UserProfileView, register, renter_dashboard, terminate_rental_agreement, user_login, user_logout, view_my_property, view_renting_property, tenant_dashboard
 from users.views import ProlongateRentalAgreementView, UpdatePaymentMethodAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -21,6 +21,7 @@ urlpatterns = [
     path('api/update-payment/', UpdatePaymentMethodAPIView.as_view(), name='update-payment'),
 
     path('my-properties/', view_my_property, name='my-properties'),
+   
 ]
 
 handler403 = 'django.views.defaults.permission_denied'
