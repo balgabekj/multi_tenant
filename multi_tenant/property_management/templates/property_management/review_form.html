@@ -1,36 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Leave a Review for {{ property.title }}{% endblock %}
 
 {% block content %}
-<h2>Leave a Review for {{ property.title }}</h2>
+    <div class="container">
+        <h2 class="text-primary mb-4">Leave a Review for {{ property.title }}</h2>
 
-<!-- Display success or error messages -->
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-      {{ message }}
-    </div>
-  {% endfor %}
-{% endif %}
+        <!-- Display success or error messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
 
-<form method="post">
-    {% csrf_token %}
-    
-    <!-- Rating Field -->
-    <div class="form-group">
-        <label for="id_rating">Rating:</label>
-        {{ form.rating.errors }}
-        {{ form.rating }}
-    </div>
-    
-    <!-- Comment Field -->
-    <div class="form-group">
-        <label for="id_comment">Comment:</label>
-        {{ form.comment.errors }}
-        {{ form.comment }}
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Submit Review</button>
-</form>
+        <form method="post" class="mb-4">
+            {% csrf_token %}
+            
+            <!-- Rating Field -->
+            <div class="form-group mb-3">
+                <label for="id_rating" class="form-label">Rating:</label>
+                {{ form.rating.errors }}
+                {{ form.rating }}
+            </div>
+            
+            <!-- Comment Field -->
+            <div class="form-group mb-3">
+                <label for="id_comment" class="form-label">Comment:</label>
+                {{ form.comment.errors }}
+                {{ form.comment }}
+            </div>
+            
+            <button type="submit" class="btn btn-kpop">Submit Review</button>
+        </form>
 
-<a href="{% url 'property_detail' property.id %}">Back to Property Details</a>
+        <a href="{% url 'property_detail' property.id %}" class="btn btn-outline-light">Back to Property Details</a>
+    </div>
 {% endblock %}
-  

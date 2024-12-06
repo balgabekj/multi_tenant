@@ -1,8 +1,9 @@
+{% extends 'base.html' %}
 
 {% block content %}
-  <h2>Lease List</h2>
+  <h2 class="text-center text-primary">Lease List</h2>
   
-  <table class="table">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>Tenant</th>
@@ -15,24 +16,29 @@
       {% for lease in leases %}
         <tr>
           <td>{{ lease.tenant }}</td>
-
           <td>{{ lease.property.name }}</td>
-          <td>{% if lease.is_active %}Active{% else %}Terminated{% endif %}</td>
           <td>
-            <a href="{% url 'lease_detail' lease.id %}">View Details</a>
-            <a href="{% url 'lease_update' lease.id %}">Edit Lease</a>
+            {% if lease.is_active %}
+              <span class="text-success">Active</span>
+            {% else %}
+              <span class="text-danger">Terminated</span>
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'lease_detail' lease.id %}" class="btn btn-info btn-sm">View Details</a>
+            <a href="{% url 'lease_update' lease.id %}" class="btn btn-warning btn-sm">Edit Lease</a>
           </td>
         </tr>
       {% empty %}
         <tr>
-          <td colspan="6">No leases available.</td>
+          <td colspan="4" class="text-center">No leases available.</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 
   {% for property in properties %}
-    <a href="{% url 'lease_create' property.id %}" class="btn btn-primary">Create New Lease for {{ property.name }}</a>
+    <a href="{% url 'lease_create' property.id %}" class="btn btn-primary btn-lg mb-3">Create New Lease for {{ property.name }}</a>
   {% endfor %}  
 
 {% endblock %}

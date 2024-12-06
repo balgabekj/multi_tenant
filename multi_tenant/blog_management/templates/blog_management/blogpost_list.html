@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Blog Posts</h1>
+    
+    <!-- Link to create a new blog post -->
+    <a href="{% url 'blogpost_create' %}" class="create-post">Create New Post</a>
+
+    <!-- Blog Post List -->
+    <ul>
+        {% for post in blog_posts %}
+            <li>
+                <a href="{% url 'blogpost_detail' post.pk %}">{{ post.title }}</a>
+                <span> - by {{ post.author.username }} on {{ post.created_at|date:"M d, Y" }}</span>
+            </li>
+        {% empty %}
+            <li class="no-posts">No blog posts available.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

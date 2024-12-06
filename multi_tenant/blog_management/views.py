@@ -7,10 +7,13 @@ from django.http import HttpResponseForbidden
 from users.models import CustomUser
 
 # BlogPost views
+import logging
+
+logger = logging.getLogger('blog_management')
 
 def blogpost_list(request):
     blog_posts = BlogPost.objects.filter(is_published=True).order_by('-created_at')
-    return render(request, 'blogpost_list.html', {'blog_posts': blog_posts})
+    return render(request, 'blog_management/blogpost_list.html', {'blog_posts': blog_posts})
 
 
 def blogpost_detail(request, pk):
@@ -30,11 +33,11 @@ def blogpost_detail(request, pk):
                 message=f"New comment on your post '{blog_post.title}' by {request.user.username}",
             )
 
-            return redirect('blogpost_detail', pk=pk)
+            return redirect('blog_management/blogpost_detail', pk=pk)
     else:
         comment_form = CommentForm()
 
-    return render(request, 'blogpost_detail.html', {
+    return render(request, 'blog_management/blogpost_detail', {
         'blog_post': blog_post,
         'comments': comments,
         'comment_form': comment_form,

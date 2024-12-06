@@ -1,31 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if listing %}
+    Edit Listing for Property: {{ property.title }}
+  {% else %}
+    Create Listing for Property: {{ property.title }}
+  {% endif %}
+{% endblock %}
 
 {% block content %}
+  <div class="container">
+    <h2 class="text-primary mb-4">
+      {% if listing %}
+        Edit Listing for Property: {{ property.title }}
+      {% else %}
+        Create Listing for Property: {{ property.title }}
+      {% endif %}
+    </h2>
 
-  <h2>Create a Listing for Property: {{ property.title }}</h2>
+    <form method="post" class="mb-4">
+      {% csrf_token %}
+      {{ form.as_p }}  <!-- Render the form fields -->
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}  <!-- Render the form fields -->
+      <!-- Add custom fields for price, description, and availability -->
+      <div class="form-group mb-3">
+        <label for="id_price">Price:</label>
+        {{ form.price }} <!-- Field for price -->
+      </div>
 
-    <div class="form-group">
-      <label for="price">Price:</label>
-      {{ form.price }} <!-- Add field for price -->
-    </div>
+      <div class="form-group mb-3">
+        <label for="id_description">Description:</label>
+        {{ form.description }} <!-- Field for description -->
+      </div>
 
-    <div class="form-group">
-      <label for="description">Description:</label>
-      {{ form.description }} <!-- Add field for description -->
-    </div>
+      <div class="form-group mb-3">
+        <label for="id_availability">Availability:</label>
+        {{ form.availability }} <!-- Field for availability -->
+      </div>
 
-    <div class="form-group">
-      <label for="availability">Availability:</label>
-      {{ form.availability }} <!-- Add field for availability -->
-    </div>
+      <button type="submit" class="btn btn-kpop">
+        {% if listing %}Update Listing{% else %}Create Listing{% endif %}
+      </button>
+    </form>
 
-    <button type="submit" class="btn btn-primary">
-      {% if listing %}Update Listing{% else %}Create Listing{% endif %}
-    </button>
-  </form>
-
-  <a href="{% url 'property_detail' property.id %}" class="btn btn-secondary">Back to Property Details</a>
+    <a href="{% url 'property_detail' property.id %}" class="btn btn-outline-light">Back to Property Details</a>
+  </div>
 {% endblock %}

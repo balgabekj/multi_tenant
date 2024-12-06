@@ -2,17 +2,128 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}My App{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Application{% endblock %}</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #1a1a1a; /* Dark background */
+            color: #f8f8f8; /* Light text */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header, footer {
+            background-color: #2a2a2a; /* Slightly lighter dark tone */
+            color: #ff69b4; /* Draculaura pink */
+            text-align: center;
+            padding: 15px 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1.2px;
+            text-shadow: 1px 1px 3px black;
+        }
+
+        header a, footer a {
+            color: #ff69b4; /* Draculaura pink links */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        header a:hover, footer a:hover {
+            color: #f88dad; /* Lighter pink on hover */
+        }
+
+        /* Content Area */
+        main {
+            flex: 1; /* Push footer to the bottom */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Added padding for better spacing */
+        }
+
+        .container {
+            padding: 30px; /* Increased padding */
+            max-width: 900px;
+            width: 100%;
+            background-color: #2a2a2a; /* Box for content */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            line-height: 1.6; /* More spacing between lines */
+        }
+
+        h1, h2, h3 {
+            color: #ff69b4; /* Draculaura pink for headers */
+            text-shadow: 2px 2px 4px #000; /* Header glow */
+            margin-bottom: 20px; /* Space below headers */
+        }
+
+        p, a {
+            margin-bottom: 15px; /* Added space between elements */
+        }
+
+        a {
+            color: #ff69b4; /* Draculaura pink links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #f88dad; /* Lighter pink on hover */
+        }
+
+        .btn-kpop {
+    background-color: #ff69b4; /* Vibrant pink */
+    color: white; /* White text for contrast */
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    border-radius: 25px; /* Rounded button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    border: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.btn-kpop:hover {
+    background-color: #f88dad; /* Lighter pink on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+    transform: translateY(-2px); /* Slight lift */
+    text-shadow: 1px 1px 2px #000; /* Subtle text glow */
+}
+
+.btn-kpop:active {
+    background-color: #ff4a85; /* Slightly darker pink when clicked */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Subtle press effect */
+    transform: translateY(2px); /* Pressed-down effect */
+}
+
+    </style>
 </head>
 <body>
     <header>
-       
+         multi_tenant
     </header>
+    
     <main>
-        {% block content %}{% endblock %}
+        <div class="container">
+            {% block content %}
+            <!-- Content goes here -->
+            {% endblock %}
+        </div>
     </main>
+    
     <footer>
-        <p>&copy; 2024 My Application</p>
+        December 2024. ALL RIGHTS RESERVED.
     </footer>
 </body>
 </html>

@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Make Payment</title>
-</head>
-<body>
-    <h1>Make Payment for Lease</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Pay</button>
-    </form>
-    <a href="{% url 'lease_detail' lease.id %}">Back to Lease Details</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Make Payment for Lease{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="text-primary mb-4">Make Payment for Lease</h2>
+
+        <form method="post" class="mb-4">
+            {% csrf_token %}
+            
+            <!-- Display form fields -->
+            <div class="form-group mb-3">
+                {{ form.as_p }}
+            </div>
+            
+            <button type="submit" class="btn btn-kpop">Pay</button>
+        </form>
+
+        <a href="{% url 'lease_detail' lease.id %}" class="btn btn-outline-light">Back to Lease Details</a>
+    </div>
+{% endblock %}

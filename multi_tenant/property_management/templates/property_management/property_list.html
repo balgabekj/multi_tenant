@@ -1,21 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property List</title>
-</head>
-<body>
-    <h1>Available Properties</h1>
-    <a href="{% url 'property_create' %}">Add Property</a>
-    <ul>
-        {% for property in properties %}
-            <li>
-                <a href="{% url 'property_detail' property.id %}">{{ property.title }}</a> - {{ property.city }}
-            </li>
-        {% empty %}
-            <li>No properties available.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5 d-flex flex-column justify-content-center align-items-center">
+    <h1 class="text-primary text-center mb-4">Properties</h1>
+    <div class="card shadow-sm w-100">
+        <div class="card-body">
+            {% if properties %}
+                <h2 class="text-primary text-center mb-4">Available Properties</h2>
+                <ul class="list-group">
+                    {% for property in properties %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{% url 'property_detail' property.id %}" class="text-decoration-none text-dark">
+                                <strong>{{ property.title }}</strong>
+                            </a>
+                            <span class="text-muted">{{ property.city }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <p class="text-muted text-center my-4">No properties available.</p>
+            {% endif %}
+        </div>
+    </div>
+    <a href="{% url 'property_create' %}" class="btn btn-kpop mt-5">Add Property</a>
+</div>
+{% endblock %}
