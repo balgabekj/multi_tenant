@@ -80,6 +80,65 @@
         .btn:hover {
             opacity: 0.9;
         }
+        /* Основной стиль для навигационной панели */
+nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Список навигационных ссылок */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+/* Элементы списка */
+nav ul li {
+    display: inline;
+}
+
+/* Ссылки в навигации */
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Ховер эффект */
+nav ul li a:hover {
+    background-color: #555;
+}
+
+/* Кнопка "Выход" */
+nav ul li a.logout {
+    background-color: #f44336;
+    color: white;
+}
+
+nav ul li a.logout:hover {
+    background-color: #d32f2f;
+}
+/* Profile Button */
+nav ul li a.profile {
+    background-color: #007bff; /* Use the primary color */
+    color: white;
+}
+
+nav ul li a.profile:hover {
+    background-color: #0056b3; /* Slightly darker shade for hover */
+}
+
+
     </style>
 </head>
 <body>
@@ -107,11 +166,19 @@
                 <p>No properties available at the moment. Please check back later.</p>
             {% endif %}
         </div>
-
-        <div class="buttons">
-            <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
-            <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
-        </div>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        
     </div>
 </body>
 </html>

@@ -53,6 +53,11 @@ def property_create_view(request):
 @login_required
 def property_update_view(request, property_id):
     property_instance = get_object_or_404(Property, id=property_id)
+
+    # Проверка, является ли текущий пользователь владельцем
+    if property_instance.owner != request.user:
+        return HttpResponseForbidden("You are not allowed to edit this property.")
+
     if request.method == 'POST':
         form = PropertyForm(request.POST, instance=property_instance)
         if form.is_valid():
@@ -60,6 +65,7 @@ def property_update_view(request, property_id):
             return redirect('property_detail', property_id=property_instance.id)
     else:
         form = PropertyForm(instance=property_instance)  
+
     return render(request, 'property_management/property_form.html', {
         'form': form, 
         'property': property_instance
@@ -68,9 +74,13 @@ def property_update_view(request, property_id):
 @login_required
 def property_delete_view(request, property_id):
     property_instance = get_object_or_404(Property, id=property_id)
+
+    # Проверка, является ли текущий пользователь владельцем
+    if property_instance.owner != request.user:
+        return HttpResponseForbidden("You are not allowed to delete this property.")
+
     property_instance.delete()
     return redirect('property_list')
-
 # Lease Views
 @login_required
 def lease_create_view(request, property_id):

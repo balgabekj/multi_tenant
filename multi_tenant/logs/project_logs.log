@@ -281,3 +281,508 @@ WARNING 2024-12-06 04:13:51,479 basehttp "POST /users/login/ HTTP/1.1" 403 2870
 INFO 2024-12-06 04:17:15,093 autoreload Watching for file changes with StatReloader
 INFO 2024-12-06 04:17:19,399 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
 INFO 2024-12-08 17:03:45,686 autoreload Watching for file changes with StatReloader
+INFO 2024-12-08 17:04:24,023 autoreload Watching for file changes with StatReloader
+INFO 2024-12-08 17:04:48,570 autoreload Watching for file changes with StatReloader
+INFO 2024-12-08 17:06:29,961 autoreload Watching for file changes with StatReloader
+INFO 2024-12-08 17:06:58,241 autoreload Watching for file changes with StatReloader
+INFO 2024-12-08 17:07:02,800 basehttp "GET /users/ HTTP/1.1" 200 3182
+INFO 2024-12-08 17:07:02,869 basehttp - Broken pipe from ('127.0.0.1', 64046)
+INFO 2024-12-08 17:07:18,511 basehttp "GET /blog_management/analytics/ HTTP/1.1" 200 50556
+INFO 2024-12-08 17:07:18,583 basehttp - Broken pipe from ('127.0.0.1', 64050)
+INFO 2024-12-08 17:09:40,505 basehttp "GET /blog_management/new/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:09:40,580 basehttp "GET /users/login/?next=/blog_management/new/ HTTP/1.1" 200 2445
+INFO 2024-12-08 17:09:53,943 basehttp "GET /blog_management/send/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:09:53,956 basehttp "GET /users/login/?next=/blog_management/send/ HTTP/1.1" 200 2445
+INFO 2024-12-08 17:10:05,313 basehttp "GET /users/ HTTP/1.1" 200 3182
+INFO 2024-12-08 17:10:05,470 basehttp - Broken pipe from ('127.0.0.1', 64086)
+INFO 2024-12-08 17:10:07,988 basehttp "GET /users/login/ HTTP/1.1" 200 2445
+INFO 2024-12-08 17:10:08,184 basehttp - Broken pipe from ('127.0.0.1', 64087)
+INFO 2024-12-08 17:10:12,666 basehttp "POST /users/login/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:10:12,686 basehttp "GET /users/tenant_dashboard HTTP/1.1" 200 2265
+INFO 2024-12-08 17:10:19,569 basehttp "GET /users/ HTTP/1.1" 200 3182
+INFO 2024-12-08 17:14:24,524 basehttp "GET /users/ HTTP/1.1" 200 3215
+INFO 2024-12-08 17:14:24,634 basehttp - Broken pipe from ('127.0.0.1', 64130)
+INFO 2024-12-08 17:14:26,107 basehttp "GET /users/ HTTP/1.1" 200 3215
+INFO 2024-12-08 17:14:26,150 basehttp - Broken pipe from ('127.0.0.1', 64131)
+INFO 2024-12-08 17:14:38,002 basehttp "GET /users/profile/ HTTP/1.1" 200 793
+INFO 2024-12-08 17:15:48,655 basehttp "GET /users/ HTTP/1.1" 200 3215
+INFO 2024-12-08 17:15:48,700 basehttp - Broken pipe from ('127.0.0.1', 64138)
+INFO 2024-12-08 17:15:50,248 basehttp "GET /users/ HTTP/1.1" 200 3215
+INFO 2024-12-08 17:15:50,347 basehttp - Broken pipe from ('127.0.0.1', 64146)
+INFO 2024-12-08 17:17:09,558 basehttp "GET /users/ HTTP/1.1" 200 4152
+INFO 2024-12-08 17:17:09,587 basehttp - Broken pipe from ('127.0.0.1', 64160)
+ERROR 2024-12-08 17:17:14,870 log Internal Server Error: /home/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\multi_tenant\multi_tenant\views.py", line 4, in home
+    return render(request, 'home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2024-12-08 17:17:14,870 basehttp "GET /home/ HTTP/1.1" 500 85481
+ERROR 2024-12-08 17:17:28,109 log Internal Server Error: /home/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\multi_tenant\multi_tenant\views.py", line 4, in home
+    return render(request, 'home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2024-12-08 17:17:28,124 basehttp "GET /home/ HTTP/1.1" 500 85350
+INFO 2024-12-08 17:17:28,174 basehttp - Broken pipe from ('127.0.0.1', 64161)
+WARNING 2024-12-08 17:17:30,606 basehttp "GET /%D0%B3%D1%8B HTTP/1.1" 404 3010
+INFO 2024-12-08 17:17:36,906 basehttp "GET /users/ HTTP/1.1" 200 4161
+INFO 2024-12-08 17:17:44,028 basehttp "GET /users/logout/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:17:44,050 basehttp "GET /users/login/ HTTP/1.1" 200 2445
+INFO 2024-12-08 17:17:44,193 basehttp - Broken pipe from ('127.0.0.1', 64169)
+INFO 2024-12-08 17:17:50,389 basehttp "POST /users/login/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:17:50,405 basehttp "GET /users/tenant_dashboard HTTP/1.1" 200 2265
+INFO 2024-12-08 17:17:52,338 basehttp "GET /users/ HTTP/1.1" 200 4161
+INFO 2024-12-08 17:17:52,492 basehttp - Broken pipe from ('127.0.0.1', 64175)
+INFO 2024-12-08 17:17:54,874 basehttp "GET /users/logout/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:17:54,892 basehttp "GET /users/login/ HTTP/1.1" 200 2445
+INFO 2024-12-08 17:18:00,132 basehttp "POST /users/login/ HTTP/1.1" 200 2627
+WARNING 2024-12-08 17:18:00,280 basehttp "GET /favicon.ico HTTP/1.1" 404 3023
+INFO 2024-12-08 17:18:04,078 basehttp "POST /users/login/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:18:04,083 basehttp "GET /users/tenant_dashboard HTTP/1.1" 200 2265
+INFO 2024-12-08 17:18:21,734 basehttp "GET /users/ HTTP/1.1" 200 4161
+INFO 2024-12-08 17:18:23,804 basehttp "GET /users/logout/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:18:23,824 basehttp "GET /users/login/ HTTP/1.1" 200 2445
+INFO 2024-12-08 17:18:24,034 basehttp - Broken pipe from ('127.0.0.1', 64176)
+INFO 2024-12-08 17:18:26,359 basehttp "GET /users/ HTTP/1.1" 200 4164
+INFO 2024-12-08 17:18:43,183 autoreload Watching for file changes with StatReloader
+INFO 2024-12-08 17:23:06,708 basehttp "GET /users/ HTTP/1.1" 200 4387
+INFO 2024-12-08 17:23:06,765 basehttp - Broken pipe from ('127.0.0.1', 64232)
+INFO 2024-12-08 17:23:10,434 basehttp "GET /users/login/ HTTP/1.1" 200 2445
+INFO 2024-12-08 17:23:10,641 basehttp - Broken pipe from ('127.0.0.1', 64233)
+INFO 2024-12-08 17:23:14,306 basehttp "POST /users/login/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:23:14,320 basehttp "GET /users/tenant_dashboard HTTP/1.1" 200 2265
+INFO 2024-12-08 17:23:18,362 basehttp "GET /users/ HTTP/1.1" 200 4451
+INFO 2024-12-08 17:23:18,439 basehttp - Broken pipe from ('127.0.0.1', 64234)
+INFO 2024-12-08 17:23:21,158 basehttp "GET /users/profile/ HTTP/1.1" 200 793
+INFO 2024-12-08 17:23:21,302 basehttp - Broken pipe from ('127.0.0.1', 64236)
+INFO 2024-12-08 17:23:55,342 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4985
+WARNING 2024-12-08 17:24:00,374 basehttp "GET /property_management/properties/create/ HTTP/1.1" 403 135
+INFO 2024-12-08 17:24:00,482 basehttp - Broken pipe from ('127.0.0.1', 64245)
+ERROR 2024-12-08 17:25:52,791 log Internal Server Error: /property_management/properties/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\multi_tenant\property_management\views.py", line 29, in property_list_view
+    return render(request, 'property_management/property_list.html', {'properties': properties})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 563, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 27: 'endblock', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+ERROR 2024-12-08 17:25:52,795 basehttp "GET /property_management/properties/ HTTP/1.1" 500 188309
+ERROR 2024-12-08 17:26:24,610 log Internal Server Error: /property_management/properties/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\multi_tenant\property_management\views.py", line 29, in property_list_view
+    return render(request, 'property_management/property_list.html', {'properties': properties})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 563, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 27: 'endblock', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+ERROR 2024-12-08 17:26:24,610 basehttp "GET /property_management/properties/ HTTP/1.1" 500 188336
+INFO 2024-12-08 17:26:24,657 basehttp - Broken pipe from ('127.0.0.1', 64260)
+ERROR 2024-12-08 17:26:36,714 log Internal Server Error: /property_management/properties/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\multi_tenant\property_management\views.py", line 29, in property_list_view
+    return render(request, 'property_management/property_list.html', {'properties': properties})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 24: 'if'. Looking for one of: elif, else, endif.
+ERROR 2024-12-08 17:26:36,714 basehttp "GET /property_management/properties/ HTTP/1.1" 500 182690
+INFO 2024-12-08 17:26:36,783 basehttp - Broken pipe from ('127.0.0.1', 64267)
+ERROR 2024-12-08 17:26:42,718 log Internal Server Error: /property_management/properties/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\multi_tenant\property_management\views.py", line 29, in property_list_view
+    return render(request, 'property_management/property_list.html', {'properties': properties})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\template\base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 3: 'block'. Looking for one of: endblock.
+ERROR 2024-12-08 17:26:42,718 basehttp "GET /property_management/properties/ HTTP/1.1" 500 167844
+INFO 2024-12-08 17:26:42,771 basehttp - Broken pipe from ('127.0.0.1', 64268)
+INFO 2024-12-08 17:26:47,924 basehttp "GET /property_management/properties/ HTTP/1.1" 200 3564
+INFO 2024-12-08 17:26:47,991 basehttp - Broken pipe from ('127.0.0.1', 64269)
+INFO 2024-12-08 17:26:58,681 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4985
+INFO 2024-12-08 17:26:58,717 basehttp - Broken pipe from ('127.0.0.1', 64278)
+INFO 2024-12-08 17:35:41,146 basehttp "GET /property_management/properties/1/ HTTP/1.1" 200 4908
+WARNING 2024-12-08 17:35:45,455 basehttp "POST /property_management/properties/1/delete/ HTTP/1.1" 403 135
+INFO 2024-12-08 17:38:33,164 basehttp "GET /users/ HTTP/1.1" 200 4451
+INFO 2024-12-08 17:38:33,250 basehttp - Broken pipe from ('127.0.0.1', 64482)
+INFO 2024-12-08 17:38:35,574 basehttp "GET /users/logout/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:38:35,593 basehttp "GET /users/login/ HTTP/1.1" 200 2445
+INFO 2024-12-08 17:38:35,793 basehttp - Broken pipe from ('127.0.0.1', 64483)
+INFO 2024-12-08 17:38:40,899 basehttp "POST /users/login/ HTTP/1.1" 200 2627
+INFO 2024-12-08 17:38:43,616 basehttp "GET /users/login/ HTTP/1.1" 200 2445
+INFO 2024-12-08 17:38:47,084 basehttp "GET /users/logout/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:38:47,087 basehttp "GET /users/login/?next=/users/logout/ HTTP/1.1" 200 2445
+INFO 2024-12-08 17:38:51,555 basehttp "GET /users/register/ HTTP/1.1" 200 3427
+INFO 2024-12-08 17:39:32,485 basehttp "POST /users/register/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:39:32,493 basehttp "GET /users/login/ HTTP/1.1" 200 2624
+INFO 2024-12-08 17:39:40,642 basehttp "POST /users/login/ HTTP/1.1" 302 0
+INFO 2024-12-08 17:39:40,667 basehttp "GET /users/renter_dashboard HTTP/1.1" 200 2289
+INFO 2024-12-08 17:39:46,628 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4893
+INFO 2024-12-08 17:39:46,774 basehttp - Broken pipe from ('127.0.0.1', 64487)
+INFO 2024-12-08 17:39:48,762 basehttp "GET /property_management/properties/1/ HTTP/1.1" 200 4908
+INFO 2024-12-08 17:39:48,897 basehttp - Broken pipe from ('127.0.0.1', 64498)
+INFO 2024-12-08 17:39:51,219 basehttp "GET /property_management/properties/1/update/ HTTP/1.1" 200 5572
+INFO 2024-12-08 17:39:52,518 basehttp - Broken pipe from ('127.0.0.1', 64499)
+INFO 2024-12-08 17:56:17,071 basehttp "GET /users/renter_dashboard HTTP/1.1" 200 2289
+INFO 2024-12-08 17:56:17,117 basehttp - Broken pipe from ('127.0.0.1', 64838)
+INFO 2024-12-08 17:57:30,297 autoreload C:\Users\user\Desktop\multi_tenant\multi_tenant\property_management\views.py changed, reloading.
+INFO 2024-12-08 17:57:31,129 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-08 17:57:40,012 basehttp "GET /property_management/ HTTP/1.1" 404 6570
+INFO 2024-12-08 17:57:40,139 basehttp - Broken pipe from ('127.0.0.1', 64878)
+INFO 2024-12-08 17:57:43,049 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4893
+INFO 2024-12-08 17:57:45,705 basehttp "GET /property_management/properties/1/ HTTP/1.1" 200 4908
+INFO 2024-12-08 17:57:45,852 basehttp - Broken pipe from ('127.0.0.1', 64880)
+WARNING 2024-12-08 17:57:48,112 basehttp "GET /property_management/properties/1/update/ HTTP/1.1" 403 42
+INFO 2024-12-08 17:57:49,643 basehttp - Broken pipe from ('127.0.0.1', 64881)
+INFO 2024-12-08 17:58:10,390 autoreload C:\Users\user\Desktop\multi_tenant\multi_tenant\property_management\views.py changed, reloading.
+INFO 2024-12-08 17:58:11,084 autoreload Watching for file changes with StatReloader
+INFO 2024-12-08 18:09:20,855 basehttp "GET /property_management/leases/ HTTP/1.1" 200 3927
+INFO 2024-12-08 18:09:20,981 basehttp - Broken pipe from ('127.0.0.1', 65021)
+WARNING 2024-12-08 18:09:24,038 basehttp "GET /property_management/ HTTP/1.1" 404 6570
+INFO 2024-12-08 18:09:28,436 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4893
+INFO 2024-12-08 18:09:28,514 basehttp - Broken pipe from ('127.0.0.1', 65022)
+INFO 2024-12-08 18:09:46,939 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4985
+INFO 2024-12-08 18:09:46,967 basehttp - Broken pipe from ('127.0.0.1', 65025)
+INFO 2024-12-08 18:09:51,547 basehttp "GET /property_management/properties/2/ HTTP/1.1" 200 4910
+WARNING 2024-12-08 18:09:53,587 basehttp "GET /property_management/properties/2/reviews/add/ HTTP/1.1" 403 135
+ERROR 2024-12-08 18:10:00,586 log Internal Server Error: /property_management/leases/create/2/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\multi_tenant\property_management\views.py", line 88, in lease_create_view
+    tenant_profile = request.user.tenant_profile
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\utils\functional.py", line 253, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 531, in __get__
+    raise self.RelatedObjectDoesNotExist(
+users.models.CustomUser.tenant_profile.RelatedObjectDoesNotExist: CustomUser has no tenant_profile.. Did you mean: 'renter_profile'?
+ERROR 2024-12-08 18:10:00,602 basehttp "GET /property_management/leases/create/2/ HTTP/1.1" 500 84637
+WARNING 2024-12-08 18:10:14,012 basehttp "GET /property_management/properties/2/reviews/add/ HTTP/1.1" 403 135
+ERROR 2024-12-08 18:10:43,435 log Internal Server Error: /property_management/leases/create/2/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\multi_tenant\property_management\views.py", line 88, in lease_create_view
+    tenant_profile = request.user.tenant_profile
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\utils\functional.py", line 253, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\multi_tenant\env\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 531, in __get__
+    raise self.RelatedObjectDoesNotExist(
+users.models.CustomUser.tenant_profile.RelatedObjectDoesNotExist: CustomUser has no tenant_profile.. Did you mean: 'renter_profile'?
+ERROR 2024-12-08 18:10:43,435 basehttp "GET /property_management/leases/create/2/ HTTP/1.1" 500 84637
+INFO 2024-12-08 18:10:43,483 basehttp - Broken pipe from ('127.0.0.1', 65026)
+WARNING 2024-12-08 18:12:49,254 basehttp "GET /users/rented-property/ HTTP/1.1" 403 135
+INFO 2024-12-08 18:12:49,433 basehttp - Broken pipe from ('127.0.0.1', 65078)
+INFO 2024-12-08 18:12:55,942 basehttp "GET /users/renter_dashboard HTTP/1.1" 200 2289
+INFO 2024-12-08 18:12:55,998 basehttp - Broken pipe from ('127.0.0.1', 65079)
+INFO 2024-12-08 18:12:59,645 basehttp "GET /users/my-properties/ HTTP/1.1" 200 68
+INFO 2024-12-08 18:12:59,729 basehttp - Broken pipe from ('127.0.0.1', 65080)
+INFO 2024-12-08 18:13:05,833 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4985
+INFO 2024-12-08 18:13:07,734 basehttp "GET /property_management/properties/create/ HTTP/1.1" 200 5458
+INFO 2024-12-08 18:13:07,829 basehttp - Broken pipe from ('127.0.0.1', 65081)
+INFO 2024-12-08 18:13:48,773 basehttp "POST /property_management/properties/create/ HTTP/1.1" 302 0
+INFO 2024-12-08 18:13:48,798 basehttp "GET /property_management/properties/ HTTP/1.1" 200 5405
