@@ -39,6 +39,7 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 def user_login(request: HttpRequest):
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -71,7 +72,7 @@ def tenant_dashboard(request):
 def renter_dashboard(request):
     return render(request, 'users/renter_dashboard.html')
 
-class UserProfileView(LoginRequiredMixin, UpdateView):
+class UserProfileView(LoginRequiredMixin, UpdateView):   
     model = CustomUser
     fields = ['first_name', 'last_name', 'email']
     template_name = 'users/profile.html'
@@ -80,16 +81,14 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
-
-        
-@login_required
 @tenant_required
+@login_required
 def view_renting_property(request):
     try:
-        tenant_profile = request.user.tenant_profile
+        tenant_profile = request.user.tenant_profile  # Get the tenant profile related to the user
         rented_property = tenant_profile.rented_property if tenant_profile else None
     except CustomUser.tenant_profile.RelatedObjectDoesNotExist:
-        rented_property = None 
+        rented_property = None  # If tenant_profile does not exist for the user, set rented_property to None
 
     return render(request, 'users/view_rented_property.html', {'property': rented_property})
 
@@ -117,8 +116,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+import logging
+
+logger = logging.getLogger('users')
 
 class ProlongateRentalAgreementView(APIView):
+    
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
@@ -197,3 +200,4 @@ def view_my_property(request):
     return render(request, 'users/my_properties.html', {
         'properties': user_properties
     })
+

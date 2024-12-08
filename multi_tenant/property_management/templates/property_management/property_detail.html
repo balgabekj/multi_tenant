@@ -1,33 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ property.title }} Details</title>
-</head>
-<body>
-    <h1>{{ property.title }}</h1>
-    <p><strong>Address:</strong> {{ property.address }}, {{ property.city }}, {{ property.state }} {{ property.postal_code }}</p>
-    <p><strong>Rent Price:</strong> ${{ property.rent_price }}</p>
-    <p><strong>Description:</strong> {{ property.description }}</p>
-    <p><strong>Available From:</strong> {{ property.available_from }}</p>
-    
-    <h2>Reviews</h2>
-    <ul>
-        {% for review in reviews %}
-            <li>{{ review.tenant.user.username }} - Rating: {{ review.rating }}/5 - {{ review.comment }}</li>
-        {% empty %}
-            <li>No reviews yet.</li>
-        {% endfor %}
-    </ul>
+{% extends "base.html" %}
 
-    <h2>Actions</h2>
-    <a href="{% url 'review_create' property.id %}">Add Review</a>
-    <a href="{% url 'property_update' property.id %}">Edit Property</a>
-    <form action="{% url 'property_delete' property.id %}" method="post" style="display: inline;">
-        {% csrf_token %}
-        <button type="submit">Delete Property</button>
-    </form>
-    <a href="{% url 'lease_create' property.id %}" class="btn">Create Lease</a>
-</body>
-</html>
+{% block title %}{{ property.title }} Details{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="text-primary mb-4">{{ property.title }}</h2>
+        
+        <div class="mb-4">
+            <p><strong>Address:</strong> {{ property.address }}, {{ property.city }}, {{ property.state }} {{ property.postal_code }}</p>
+            <p><strong>Rent Price:</strong> ${{ property.rent_price }}</p>
+            <p><strong>Description:</strong> {{ property.description }}</p>
+            <p><strong>Available From:</strong> {{ property.available_from }}</p>
+        </div>
+        
+        <h3 class="text-secondary mb-3">Reviews</h3>
+        <ul class="list-group mb-4">
+            {% for review in reviews %}
+                <li class="list-group-item">
+                    <strong>{{ review.tenant.user.username }} - Rating: {{ review.rating }}/5</strong>
+                    <p>{{ review.comment }}</p>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No reviews yet.</li>
+            {% endfor %}
+        </ul>
+        
+        <h3 class="text-secondary mb-3">Actions</h3>
+        <div class="btn-group-vertical">
+            <a href="{% url 'review_create' property.id %}" class="btn btn-kpop mb-2">Add Review</a>
+            <a href="{% url 'property_update' property.id %}" class="btn btn-warning mb-2">Edit Property</a>
+            <form action="{% url 'property_delete' property.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger mb-2">Delete Property</button>
+            </form>
+            <a href="{% url 'lease_create' property.id %}" class="btn btn-outline-light">Create Lease</a>
+        </div>
+    </div>
+{% endblock %}

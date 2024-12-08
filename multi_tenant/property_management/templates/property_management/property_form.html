@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if property %}Edit{% else %}Add{% endif %} Property</title>
-</head>
-<body>
-    <h1>{% if property %}Edit{% else %}Add{% endif %} Property</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-    <a href="{% url 'property_list' %}">Back to Property List</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %} {% if property %} Edit {% else %} Add {% endif %} Property {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="text-primary mb-4">{% if property %} Edit {% else %} Add {% endif %} Property</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-kpop btn-block">Save</button>
+        </form>
+        <a href="{% url 'property_list' %}" class="btn btn-outline-light mt-3">Back to Property List</a>
+    </div>
+{% endblock %}

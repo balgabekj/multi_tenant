@@ -6,12 +6,11 @@
     {% if property %}
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">{{ property.name }}</h5>
+                <h5 class="card-title">{{ property.title }}</h5> <!-- Use 'title' instead of 'name' -->
                 <p class="card-text">
                     <strong>Address:</strong> {{ property.address }}<br>
-                    <strong>Rent:</strong> ${{ property.rent }}<br>
-                    <strong>Lease Start Date:</strong> {{ property.lease_start_date }}<br>
-                    <strong>Lease End Date:</strong> {{ property.lease_end_date }}<br>
+                    <strong>Rent:</strong> ${{ property.rent_price }}<br> <!-- Use 'rent_price' -->
+                    <strong>Available From:</strong> {{ property.available_from }}<br> <!-- Use 'available_from' -->
                 </p>
             </div>
         </div>

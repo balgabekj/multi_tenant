@@ -1,9 +1,10 @@
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blog{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Georgia', serif;
@@ -31,7 +32,7 @@
             font-size: 28px;
             font-weight: bold;
             font-style: italic;
-            color: #ff69b4; /* Draculaura pink */
+            color: #ff69b4;
             margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -65,19 +66,18 @@
         button {
             width: 100%;
             padding: 12px;
-            background-color: #ff69b4; /* Vibrant pink */
+            background-color: #ff69b4;
             border: none;
-            color: white; /* White text for better contrast */
+            color: white;
             font-weight: bold;
             font-size: 16px;
             border-radius: 6px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            text-shadow: none; /* Removed shadow for clearer text */
         }
 
         button:hover {
-            background-color: #f88dad; /* Lighter pink on hover */
+            background-color: #f88dad;
         }
 
         a {
@@ -95,36 +95,8 @@
     </style>
 </head>
 <body>
-
-<div class="form-container">
-    <h1>{% if form.instance.pk %}Edit Blog Post{% else %}Create Blog Post{% endif %}</h1>
-    <form method="POST">
-        {% csrf_token %}
-        
-        <!-- Title Field -->
-        <div class="form-group">
-            <label for="{{ form.title.id_for_label }}">Title</label>
-            <input type="text" 
-                   name="title" 
-                   id="{{ form.title.id_for_label }}" 
-                   value="{{ form.title.value|default_if_none:'' }}" 
-                   required>
-        </div>
-
-        <!-- Content Field -->
-        <div class="form-group">
-            <label for="{{ form.content.id_for_label }}">Content</label>
-            <textarea name="content" 
-                      id="{{ form.content.id_for_label }}" 
-                      required>{{ form.content.value|default_if_none:'' }}</textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit">{% if form.instance.pk %}Update{% else %}Create{% endif %}</button>
-    </form>
-    <a href="{% url 'blogpost_list' %}">Back to all posts</a>
-</div>
-
+    <div class="form-container">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>
-{% endblock %}

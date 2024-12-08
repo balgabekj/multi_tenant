@@ -1,0 +1,283 @@
+INFO 2024-12-05 17:12:24,431 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:12:46,050 basehttp "GET /blog_management/new/ HTTP/1.1" 200 659
+INFO 2024-12-05 17:13:16,649 basehttp "GET /blog_management/new/ HTTP/1.1" 200 659
+WARNING 2024-12-05 17:13:19,295 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-05 17:13:20,234 basehttp "GET /property_management/properties/create/ HTTP/1.1" 200 1927
+INFO 2024-12-05 17:13:57,352 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/users/views.py changed, reloading.
+INFO 2024-12-05 17:13:57,743 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:14:02,136 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/users/views.py changed, reloading.
+INFO 2024-12-05 17:14:02,429 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:14:05,703 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/users/views.py changed, reloading.
+INFO 2024-12-05 17:14:05,997 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:14:17,563 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/users/views.py changed, reloading.
+INFO 2024-12-05 17:14:17,873 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:14:21,220 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/users/views.py changed, reloading.
+INFO 2024-12-05 17:14:21,504 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:14:34,086 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/users/views.py changed, reloading.
+INFO 2024-12-05 17:14:34,369 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:15:09,952 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 17:15:10,321 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:15:11,597 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 17:15:11,874 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:15:18,317 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 17:15:18,631 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:15:25,090 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 17:15:25,413 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 17:16:04,263 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/multi_tenant/settings.py changed, reloading.
+INFO 2024-12-05 17:16:28,032 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 22:42:04,717 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 22:44:44,098 basehttp "GET /property_management/properties/create/ HTTP/1.1" 200 1927
+INFO 2024-12-05 22:44:46,435 basehttp "GET /property_management/properties/create/ HTTP/1.1" 200 1927
+WARNING 2024-12-05 22:44:50,199 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-05 22:44:51,449 basehttp "GET /blog_management/new/ HTTP/1.1" 200 1053
+INFO 2024-12-05 22:44:54,413 basehttp "GET /blog_management/new/ HTTP/1.1" 200 1053
+INFO 2024-12-05 22:44:55,207 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:45:12,797 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:45:13,656 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:45:21,649 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-05 22:45:23,592 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-05 22:45:28,398 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-05 22:45:29,126 basehttp "GET /blog_management/new/ HTTP/1.1" 200 1053
+INFO 2024-12-05 22:45:32,685 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:45:34,736 basehttp "GET /blog_management/new/ HTTP/1.1" 200 1053
+INFO 2024-12-05 22:45:39,161 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:47:08,681 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:47:09,381 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:48:52,212 basehttp "GET /blog_management/new/ HTTP/1.1" 200 3398
+INFO 2024-12-05 22:52:08,884 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 22:52:09,277 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 22:52:14,684 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 22:52:15,007 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-05 22:52:18,077 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-05 22:52:23,683 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-05 22:52:24,299 basehttp "GET /blog_management/new/ HTTP/1.1" 200 3398
+INFO 2024-12-05 22:52:30,524 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:52:43,577 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 22:52:43,959 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 22:52:44,986 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:52:45,831 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:54:29,049 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/multi_tenant/settings.py changed, reloading.
+INFO 2024-12-05 22:54:29,417 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 22:54:31,716 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/multi_tenant/settings.py changed, reloading.
+INFO 2024-12-05 22:54:50,127 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-05 22:54:55,715 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-05 22:54:59,177 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-05 22:55:00,617 basehttp "GET /blog_management/new/ HTTP/1.1" 200 3398
+INFO 2024-12-05 22:55:03,403 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:55:14,522 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 22:55:14,890 autoreload Watching for file changes with StatReloader
+INFO 2024-12-05 22:55:19,245 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 22:55:19,553 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-05 22:55:21,805 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-05 22:55:27,266 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-05 22:55:28,066 basehttp "GET /blog_management/new/ HTTP/1.1" 200 3398
+INFO 2024-12-05 22:55:31,085 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:55:50,052 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 22:55:50,337 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-05 22:55:52,001 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-05 22:55:57,301 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-05 22:55:57,741 basehttp "GET /blog_management/new/ HTTP/1.1" 200 3398
+INFO 2024-12-05 22:56:01,410 basehttp "GET /blog_management/new/ HTTP/1.1" 200 3398
+INFO 2024-12-05 22:56:01,669 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+ERROR 2024-12-05 22:56:22,996 log Internal Server Error: /blog_management/1/
+Traceback (most recent call last):
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py", line 40, in blogpost_detail
+    return render(request, 'blog_management/blogpost_detail', {
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: blog_management/blogpost_detail
+ERROR 2024-12-05 22:56:22,997 basehttp "GET /blog_management/1/ HTTP/1.1" 500 85000
+ERROR 2024-12-05 22:56:41,448 log Internal Server Error: /blog_management/1/
+Traceback (most recent call last):
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py", line 40, in blogpost_detail
+    return render(request, 'blog_management/blogpost_detail', {
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: blog_management/blogpost_detail
+ERROR 2024-12-05 22:56:41,450 basehttp "GET /blog_management/1/ HTTP/1.1" 500 85000
+INFO 2024-12-05 22:56:41,482 basehttp "GET /blog_management/1 HTTP/1.1" 301 0
+ERROR 2024-12-05 22:56:41,514 log Internal Server Error: /blog_management/1/
+Traceback (most recent call last):
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py", line 40, in blogpost_detail
+    return render(request, 'blog_management/blogpost_detail', {
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: blog_management/blogpost_detail
+ERROR 2024-12-05 22:56:41,515 basehttp "GET /blog_management/1/ HTTP/1.1" 500 85000
+INFO 2024-12-05 22:56:45,013 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+ERROR 2024-12-05 22:56:46,000 log Internal Server Error: /blog_management/4/
+Traceback (most recent call last):
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py", line 40, in blogpost_detail
+    return render(request, 'blog_management/blogpost_detail', {
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: blog_management/blogpost_detail
+ERROR 2024-12-05 22:56:46,001 basehttp "GET /blog_management/4/ HTTP/1.1" 500 84863
+INFO 2024-12-05 22:57:19,138 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py changed, reloading.
+INFO 2024-12-05 22:57:19,507 autoreload Watching for file changes with StatReloader
+ERROR 2024-12-05 22:57:23,430 log Internal Server Error: /blog_management/4/
+Traceback (most recent call last):
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/blog_management/views.py", line 40, in blogpost_detail
+    return render(request, 'blog_management/blogpost_detail', {
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: blog_management/blogpost_detail
+ERROR 2024-12-05 22:57:23,430 basehttp "GET /blog_management/4/ HTTP/1.1" 500 84863
+INFO 2024-12-05 22:57:25,952 basehttp "GET /blog_management/ HTTP/1.1" 200 1417
+INFO 2024-12-05 22:58:41,972 autoreload /Users/ainelnazaraly/multi_tenant/multi_tenant/multi_tenant/settings.py changed, reloading.
+INFO 2024-12-05 22:58:42,330 autoreload Watching for file changes with StatReloader
+INFO 2024-12-06 02:05:49,112 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-06 02:05:50,639 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-06 02:05:54,878 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-06 02:05:58,457 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-06 02:05:58,853 basehttp "GET /users/register/ HTTP/1.1" 200 3243
+INFO 2024-12-06 02:06:01,783 basehttp "GET /users/login/ HTTP/1.1" 200 2445
+INFO 2024-12-06 02:06:09,089 basehttp "POST /users/login/ HTTP/1.1" 302 0
+INFO 2024-12-06 02:06:09,095 basehttp "GET /users/renter_dashboard HTTP/1.1" 200 2289
+INFO 2024-12-06 02:06:20,248 basehttp "GET /users/renter_dashboard HTTP/1.1" 200 2289
+WARNING 2024-12-06 02:06:28,652 basehttp "GET /users/rented-property/ HTTP/1.1" 403 135
+INFO 2024-12-06 02:07:15,189 basehttp "GET /users/register/ HTTP/1.1" 200 3243
+INFO 2024-12-06 02:07:59,052 basehttp "POST /users/register/ HTTP/1.1" 302 0
+INFO 2024-12-06 02:07:59,056 basehttp "GET /users/login/ HTTP/1.1" 200 2626
+INFO 2024-12-06 02:08:07,982 basehttp "POST /users/login/ HTTP/1.1" 302 0
+INFO 2024-12-06 02:08:07,989 basehttp "GET /users/tenant_dashboard HTTP/1.1" 200 2265
+INFO 2024-12-06 02:08:12,606 basehttp "GET /users/tenant_dashboard HTTP/1.1" 200 2265
+INFO 2024-12-06 02:08:14,859 basehttp "GET /users/register/ HTTP/1.1" 200 3243
+WARNING 2024-12-06 02:08:15,293 basehttp "GET /users/renter_dashboard HTTP/1.1" 403 135
+INFO 2024-12-06 02:08:20,463 basehttp "GET /users/rented-property/ HTTP/1.1" 200 400
+INFO 2024-12-06 03:41:56,604 autoreload Watching for file changes with StatReloader
+INFO 2024-12-06 03:45:15,490 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-06 03:45:56,230 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-06 03:46:00,448 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-06 03:46:02,746 basehttp "GET /property_management/properties/create/ HTTP/1.1" 403 135
+INFO 2024-12-06 03:46:28,868 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+WARNING 2024-12-06 03:46:31,597 basehttp "GET /property_management/properties/create/ HTTP/1.1" 403 135
+WARNING 2024-12-06 03:46:46,695 basehttp "GET /property_management/properties/1. HTTP/1.1" 404 5513
+WARNING 2024-12-06 03:46:51,181 basehttp "GET /property_management/properties/1/ HTTP/1.1" 404 3018
+INFO 2024-12-06 03:47:00,074 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-06 03:47:00,679 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+WARNING 2024-12-06 03:47:03,694 basehttp "GET /property_management/properties/create/ HTTP/1.1" 403 135
+WARNING 2024-12-06 03:48:00,776 basehttp "GET /property_management/properties/create/ HTTP/1.1" 403 135
+WARNING 2024-12-06 03:48:01,525 basehttp "GET /property_management/properties/create/ HTTP/1.1" 403 135
+INFO 2024-12-06 03:49:02,185 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-06 03:49:04,489 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-06 03:49:07,566 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-06 03:49:08,857 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-06 03:49:09,489 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-06 03:49:16,087 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-06 03:49:18,071 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+WARNING 2024-12-06 03:49:20,769 basehttp "GET /property_management/properties/create/ HTTP/1.1" 403 135
+INFO 2024-12-06 03:55:54,107 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+WARNING 2024-12-06 03:56:00,562 basehttp "GET /property_management/properties/1/ HTTP/1.1" 404 3018
+WARNING 2024-12-06 03:56:14,017 basehttp "GET /property_management/properties/1/ HTTP/1.1" 404 3018
+WARNING 2024-12-06 03:56:15,003 basehttp "GET /property_management/properties/1/ HTTP/1.1" 404 3018
+INFO 2024-12-06 03:56:30,126 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-06 03:56:32,545 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-06 03:56:33,996 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+WARNING 2024-12-06 03:56:37,248 basehttp "GET /property_management/properties/create/ HTTP/1.1" 403 135
+INFO 2024-12-06 03:57:14,598 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+WARNING 2024-12-06 03:57:16,953 basehttp "GET /property_management/properties/1/ HTTP/1.1" 404 3018
+WARNING 2024-12-06 03:57:25,568 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-06 03:57:26,050 basehttp "GET /users/renter_dashboard HTTP/1.1" 403 135
+WARNING 2024-12-06 03:57:27,666 basehttp "GET /users/renter_dashboard HTTP/1.1" 403 135
+WARNING 2024-12-06 03:57:28,845 basehttp "GET /users/renter_dashboard HTTP/1.1" 403 135
+INFO 2024-12-06 03:57:33,615 basehttp "GET /users/register/ HTTP/1.1" 200 3243
+WARNING 2024-12-06 03:57:33,894 basehttp "GET /users/renter_dashboard HTTP/1.1" 403 135
+INFO 2024-12-06 03:57:36,082 basehttp "GET /users/login/ HTTP/1.1" 200 2445
+INFO 2024-12-06 03:57:51,082 basehttp "POST /users/login/ HTTP/1.1" 200 2627
+INFO 2024-12-06 03:57:59,401 basehttp "GET /users/login/ HTTP/1.1" 200 2445
+INFO 2024-12-06 03:58:00,403 basehttp "GET /users/register/ HTTP/1.1" 200 3243
+INFO 2024-12-06 03:58:41,915 basehttp "POST /users/register/ HTTP/1.1" 302 0
+INFO 2024-12-06 03:58:41,920 basehttp "GET /users/login/ HTTP/1.1" 200 2631
+INFO 2024-12-06 03:58:50,289 basehttp "POST /users/login/ HTTP/1.1" 302 0
+INFO 2024-12-06 03:58:50,295 basehttp "GET /users/renter_dashboard HTTP/1.1" 200 2289
+INFO 2024-12-06 03:58:53,740 basehttp "GET /users/renter_dashboard HTTP/1.1" 200 2289
+WARNING 2024-12-06 03:58:56,159 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-06 03:58:56,915 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-06 03:59:04,214 basehttp "GET /property_management/properties/create/ HTTP/1.1" 200 1926
+INFO 2024-12-06 04:00:51,359 basehttp "GET /property_management/properties/create/ HTTP/1.1" 200 5458
+INFO 2024-12-06 04:02:10,395 basehttp "POST /property_management/properties/create/ HTTP/1.1" 200 5682
+INFO 2024-12-06 04:02:13,496 basehttp "POST /property_management/properties/create/ HTTP/1.1" 200 5682
+INFO 2024-12-06 04:02:15,780 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-06 04:02:23,047 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-06 04:02:23,817 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-06 04:02:25,313 basehttp "GET /property_management/properties/create/ HTTP/1.1" 200 5458
+INFO 2024-12-06 04:02:31,567 basehttp "GET /property_management/properties/create/ HTTP/1.1" 200 5458
+INFO 2024-12-06 04:02:32,744 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-06 04:02:48,075 basehttp "GET /property_management/properties/6/ HTTP/1.1" 200 4969
+ERROR 2024-12-06 04:03:06,401 log Internal Server Error: /property_management/leases/create/6/
+Traceback (most recent call last):
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/property_management/views.py", line 78, in lease_create_view
+    tenant_profile = request.user.tenant_profile
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+  File "/Users/ainelnazaraly/multi_tenant/multi_tenant/env/lib/python3.9/site-packages/django/db/models/fields/related_descriptors.py", line 492, in __get__
+    raise self.RelatedObjectDoesNotExist(
+users.models.CustomUser.tenant_profile.RelatedObjectDoesNotExist: CustomUser has no tenant_profile.
+ERROR 2024-12-06 04:03:06,402 basehttp "GET /property_management/leases/create/6/ HTTP/1.1" 500 80662
+INFO 2024-12-06 04:03:09,837 basehttp "GET /property_management/properties/6/update/ HTTP/1.1" 200 5620
+INFO 2024-12-06 04:03:14,445 basehttp "POST /property_management/properties/6/update/ HTTP/1.1" 302 0
+INFO 2024-12-06 04:03:14,456 basehttp "GET /property_management/properties/6/ HTTP/1.1" 200 4969
+WARNING 2024-12-06 04:07:34,738 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-06 04:07:38,687 basehttp "GET / HTTP/1.1" 404 2659
+WARNING 2024-12-06 04:07:40,284 basehttp "GET / HTTP/1.1" 404 2659
+INFO 2024-12-06 04:07:43,049 basehttp "GET /swagger/ HTTP/1.1" 200 2206
+INFO 2024-12-06 04:07:43,081 basehttp "GET /static/drf-yasg/style.css HTTP/1.1" 304 0
+INFO 2024-12-06 04:07:43,083 basehttp "GET /static/drf-yasg/swagger-ui-init.js HTTP/1.1" 304 0
+INFO 2024-12-06 04:07:43,085 basehttp "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 200 2093
+INFO 2024-12-06 04:07:43,086 basehttp "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js HTTP/1.1" 304 0
+INFO 2024-12-06 04:07:43,087 basehttp "GET /static/drf-yasg/swagger-ui-dist/swagger-ui.css HTTP/1.1" 200 145206
+INFO 2024-12-06 04:07:43,088 basehttp "GET /static/drf-yasg/immutable.min.js HTTP/1.1" 200 56904
+INFO 2024-12-06 04:07:43,089 basehttp "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js HTTP/1.1" 200 322863
+INFO 2024-12-06 04:07:43,210 basehttp "GET /swagger/?format=openapi HTTP/1.1" 200 2486
+WARNING 2024-12-06 04:13:51,478 log Forbidden (CSRF cookie not set.): /users/login/
+WARNING 2024-12-06 04:13:51,479 basehttp "POST /users/login/ HTTP/1.1" 403 2870
+INFO 2024-12-06 04:17:15,093 autoreload Watching for file changes with StatReloader
+INFO 2024-12-06 04:17:19,399 basehttp "GET /property_management/properties/ HTTP/1.1" 200 4997
+INFO 2024-12-08 17:03:45,686 autoreload Watching for file changes with StatReloader

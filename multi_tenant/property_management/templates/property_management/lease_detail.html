@@ -1,17 +1,30 @@
-<h1>Lease Details</h1>
-<p><strong>Tenant:</strong> {{ lease.tenant }}</p>
-<p><strong>Property:</strong> {{ lease.property }}</p>
-<p><strong>Start Date:</strong> {{ lease.lease_start_date }}</p>
-<p><strong>End Date:</strong> {{ lease.lease_end_date }}</p>
-<p><strong>Rent Amount:</strong> {{ lease.rent_amount }}</p>
-<p><strong>Status:</strong> {% if lease.is_active %} Active {% else %} Terminated {% endif %}</p>
-<a href="{% url 'lease_update' lease.id %}">Edit Lease</a>
-<a href="{% url 'lease_list' %}">Back to Lease List</a>
-{% if lease.is_active %}
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="text-center text-primary mb-4">Lease Details</h1>
+  
+  <p><strong>Tenant:</strong> {{ lease.tenant }}</p>
+  <p><strong>Property:</strong> {{ lease.property }}</p>
+  <p><strong>Start Date:</strong> {{ lease.lease_start_date }}</p>
+  <p><strong>End Date:</strong> {{ lease.lease_end_date }}</p>
+  <p><strong>Rent Amount:</strong> ${{ lease.rent_amount }}</p>
+  <p><strong>Status:</strong> 
+    {% if lease.is_active %}
+      <span class="badge bg-success">Active</span>
+    {% else %}
+      <span class="badge bg-danger">Terminated</span>
+    {% endif %}
+  </p>
+
+  <div class="mt-3">
+    <a href="{% url 'lease_update' lease.id %}" class="btn btn-outline-warning btn-lg">Edit Lease</a>
+    <a href="{% url 'lease_list' %}" class="btn btn-outline-secondary btn-lg">Back to Lease List</a>
+  </div>
+
+  {% if lease.is_active %}
     <form action="{% url 'lease_terminate' lease.id %}" method="POST" style="display:inline;">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Terminate Lease</button>
+        <button type="submit" class="btn btn-danger btn-lg mt-3">Terminate Lease</button>
     </form>
-{% endif %}
-
-
+  {% endif %}
+{% endblock %}
