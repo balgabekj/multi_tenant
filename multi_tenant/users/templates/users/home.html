@@ -159,11 +159,9 @@ nav ul li a.profile:hover {
                     <p>{{ property.description }}</p>
                 </div>
                 {% endfor %}
-                {% if properties|length > 2 %}
+                
                 <p>And more... <a href="{% url 'property_list' %}">View all properties</a></p>
-                {% endif %}
-            {% else %}
-                <p>No properties available at the moment. Please check back later.</p>
+
             {% endif %}
         </div>
         <nav>

@@ -17,10 +17,12 @@
                         </li>
                     {% endfor %}
                 </ul>
-                <p class="text-muted text-center my-4">No properties available.</p>
+                <!-- <p class="text-muted text-center my-4">No properties available.</p> -->
             {% endif %}
         </div>
     </div>
-    <a href="{% url 'property_create' %}" class="btn btn-kpop mt-5">Add Property</a>
+    {% if user.is_authenticated and user.is_renter %}
+        <a href="{% url 'property_create' %}" class="btn btn-kpop mt-5">Add Property</a>
+    {% endif %}
 </div>
 {% endblock %}
